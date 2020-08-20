@@ -1,0 +1,14 @@
+[
+  {
+    "name": "default",
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "application",
+    "password": "application",
+    "database": "application",
+    "schema": "",
+    "synchronize": false,
+    "entities": ["entities/*.js"]
+  }
+]

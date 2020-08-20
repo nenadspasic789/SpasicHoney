@@ -6,7 +6,8 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class AdministratorService {
     constructor(
-        @InjectRepository(Administrator) private readonly administrator: Repository<Administrator>
+        @InjectRepository(Administrator)
+        private readonly administrator: Repository<Administrator>,
     ){ }
 
     getAll(): Promise<Administrator[]> {
@@ -16,4 +17,8 @@ export class AdministratorService {
     getById(id): Promise<Administrator> {
         return this.administrator.findOne(id);
     }
+
+    // add
+    // editById
+    // deleteById
 }
