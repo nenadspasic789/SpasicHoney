@@ -36,3 +36,4 @@ lerna-debug.log*
 # Nasi fajlovi
 .env
 config/database.configuration.ts
+config/jwt.secret.ts

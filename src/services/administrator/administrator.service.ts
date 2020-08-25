@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { AddAdministratorDto } from 'src/dtos/administrator/add.administrator.dto';
 import { EditAdministratorDto } from 'src/dtos/administrator/edit.administrator.dto';
 import { ApiResponse } from 'src/misc/api.response.class';
-//import crypto  as 'crypto';
+import * as crypto  from 'crypto';
 
 
 @Injectable()
@@ -19,13 +19,23 @@ export class AdministratorService {
         return this.administrator.find();
     }
 
+    async getByUsername(username: string): Promise<Administrator | null> {
+        const admin = await this.administrator.findOne({
+            username: username
+        });
+        if (admin) {
+            return admin;
+        }
+        return null;
+    }
+
+
     getById(id): Promise<Administrator> {
         return this.administrator.findOne(id);
     }
 
     // add
     add(data: AddAdministratorDto): Promise<Administrator | ApiResponse> {
-        const crypto = require('crypto');
         const passwordHash = crypto.createHash('sha512');
         passwordHash.update(data.password);
         const passwordHashString = passwordHash.digest('hex').toUpperCase();
