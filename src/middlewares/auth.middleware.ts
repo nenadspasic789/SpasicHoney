@@ -24,18 +24,23 @@ export class AuthMiddleware implements NestMiddleware {
 
         const tokenString = tokenParts[1];
 
-
-        const jwtData: JwtDataAdministratorDto = jwt.verify(tokenString, jwtSecret);
+        let jwtData: JwtDataAdministratorDto;
+        
+        try {
+            jwtData = jwt.verify(tokenString, jwtSecret);
+        } catch (e) {
+            throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED);
+        }
         if (!jwtData) {
-            throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED)
+            throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED);
         }
 
         if (jwtData.ip !== req.ip.toString()) {
-            throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED)
+            throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED);
         }
 
         if (jwtData.ua !== req.headers["user-agent"]) {
-            throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED)
+            throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED);
         }
 
         const administrator = await this.administratorService.getById(jwtData.administratorId);
@@ -44,7 +49,7 @@ export class AuthMiddleware implements NestMiddleware {
         }
 
         const trenutniTimeStamp = new Date().getTime() / 1000;
-        if (trenutniTimeStamp >= jwtData.ext) {
+        if (trenutniTimeStamp >= jwtData.exp) {
             throw new HttpException('The token has expired', HttpStatus.UNAUTHORIZED)
         }
 
