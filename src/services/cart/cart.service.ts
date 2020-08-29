@@ -3,8 +3,6 @@ import { Cart } from "src/entities/cart.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CartArticle } from "src/entities/cart-article.entity";
-import { Article } from "src/entities/article.entity";
-import { Order } from "src/entities/order.entity";
 
 
 @Injectable()
@@ -15,12 +13,6 @@ export class CartService {
 
         @InjectRepository(CartArticle)
         private readonly cartArticle: Repository<CartArticle>,
-
-        @InjectRepository(Article)
-        private readonly article: Repository<Article>,
-
-        @InjectRepository(Order)
-        private readonly order: Repository<Order>,
     ){ }
 
     async getLastActiveCartByUserId(userId: number): Promise<Cart | null> {
@@ -81,6 +73,7 @@ export class CartService {
                 "cartArticles",
                 "cartArticles.article",
                 "cartArticles.article.category",
+                "cartArticles.article.articlePrices",
             ]
         });
     }
@@ -100,7 +93,7 @@ export class CartService {
                 await this.cartArticle.save(record);
             }
         }
-        
+
         return await this.getById(cartId);
     }
 
