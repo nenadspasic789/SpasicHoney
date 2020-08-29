@@ -61,12 +61,12 @@ export class AuthController {
         return new Promise(resolve => resolve(responseObject));
     }
 
-    @Put('user/register') // PUT http://localhost:3000/auth/user/register/
+    @Post('user/register') // POST http://localhost:3000/auth/user/register/
     async userRegister(@Body() data: UserRegistrationDto) {
         return await this.userService.register(data);
     }
 
-    @Post('user/login') // http://localhost:3000/auth/administrator/login/
+    @Post('user/login') // POST http://localhost:3000/auth/administrator/login/
     async doUserLogin(@Body() data: LoginUserDto, @Req() req: Request): Promise<LoginInfoDto | ApiResponse> {
         const user = await this.userService.getByEmail(data.email);
 
