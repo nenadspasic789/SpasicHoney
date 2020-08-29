@@ -5,7 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { AddArticleDto } from "src/dtos/article/add.article.dto";
 import { ApiResponse } from "src/misc/api.response.class";
-import { ArticlePrice } from "src/entities/atricle-price.entity";
+import { ArticlePrice } from "src/entities/article-price.entity";
 import { ArticleFeature } from "src/entities/article-feature.entity";
 import { EditArticleDto } from "src/dtos/article/edit.article.dto";
 

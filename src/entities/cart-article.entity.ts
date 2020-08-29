@@ -8,6 +8,7 @@ import {
 } from "typeorm";
 import { Article } from "./article.entity";
 import { Cart } from "./cart.entity";
+import * as Validator from 'class-validator';
 
 @Index("uq_cart_article_cart_id_article_id", ["cartId", "articleId"], { unique: true })
 @Index("fk_cart_article_article_id", ["articleId"], {})
@@ -27,6 +28,12 @@ export class CartArticle {
   articleId: number;
 
   @Column({ type: "int", unsigned: true })
+  @Validator.IsNotEmpty()
+  @Validator.IsNumber({
+    allowInfinity: false,
+    allowNaN: false,
+    maxDecimalPlaces: 0
+  })
   quantity: number;
 
   @ManyToOne(() => Article, (article) => article.cartArticles, {

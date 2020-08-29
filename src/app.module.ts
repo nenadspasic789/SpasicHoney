@@ -5,7 +5,7 @@ import { DatabaseConfiguration } from 'config/database.configuration';
 import { Administrator } from 'src/entities/administrator.entity';
 import { AdministratorService } from './services/administrator/administrator.service';
 import { ArticleFeature } from 'src/entities/article-feature.entity';
-import { ArticlePrice } from 'src/entities/atricle-price.entity';
+import { ArticlePrice } from 'src/entities/article-price.entity';
 import { Article } from 'src/entities/article.entity';
 import { CartArticle } from 'src/entities/cart-article.entity';
 import { Cart } from 'src/entities/cart.entity';
