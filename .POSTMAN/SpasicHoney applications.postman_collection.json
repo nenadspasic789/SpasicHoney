@@ -1,0 +1,1691 @@
+{
+	"info": {
+		"_postman_id": "8a597d51-fd2f-4f65-af71-d3aab7b0b89d",
+		"name": "Web Service applications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Administrator",
+			"item": [
+				{
+					"name": "Get all administrators",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all administrators",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/administrator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"administrator"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "135"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"87-nxOemuetbH/wfMXx5EvsNq4Q1IQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Aug 2020 16:46:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"administratorId\": 1,\n        \"username\": \"nenad\",\n        \"passwordHash\": \"12345\"\n    },\n    {\n        \"administratorId\": 2,\n        \"username\": \"aleksandar\",\n        \"passwordHash\": \"123456\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get a single administrator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								"1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get a single administrator",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/administrator/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"administrator",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-wcrWyf3W+Ev7eLnRqjP6d5hobe0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Aug 2020 16:48:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"administratorId\": 1,\n    \"username\": \"nenad\",\n    \"passwordHash\": \"12345\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a single non-existing administrator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/700/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								"700",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new administrator",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admintest\",\r\n    \"password\": \"admintest\"\r\n\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit an existing administrator",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"nekanovalozinkazaovogadministratoraaaa\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a non-existing administrator",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"probapassword232123\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/670/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								"670",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "216d4eed-e58e-42aa-968d-012a0ca4e164",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ecd6557-859e-451c-b2be-e13453010898",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "POST createFull",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Livadski Med\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livadski med\",\r\n    \"description\": \"Detaljan opis\",\r\n    \"price\": 800,\r\n    \"features\":[\r\n        {\r\n        \"featureId\": 1,\r\n        \"value\": \"Medna Kuća Spasić\"\r\n        },\r\n        {\r\n        \"featureId\": 4,\r\n        \"value\": \"Livadski\"\r\n        },\r\n        {\r\n        \"featureId\": 5,\r\n        \"value\": \"Vrcani\"\r\n        },\r\n        {\r\n        \"featureId\": 6,\r\n        \"value\": \"1kg\"\r\n        },\r\n        {\r\n        \"featureId\": 7,\r\n        \"value\": \"Staklo\"\r\n        },\r\n        {\r\n        \"featureId\": 8,\r\n        \"value\": \"Rok upotrebe\"\r\n        }\r\n    ]\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/article/createFull/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"createFull",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST createFull - success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Livadski Med\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livadski med\",\r\n    \"description\": \"Detaljan opis\",\r\n    \"price\": 800,\r\n    \"features\":[\r\n        {\r\n        \"featureId\": 1,\r\n        \"value\": \"Medna Kuća Spasić\"\r\n        },\r\n        {\r\n        \"featureId\": 4,\r\n        \"value\": \"Livadski\"\r\n        },\r\n        {\r\n        \"featureId\": 5,\r\n        \"value\": \"Vrcani\"\r\n        },\r\n        {\r\n        \"featureId\": 6,\r\n        \"value\": \"1kg\"\r\n        },\r\n        {\r\n        \"featureId\": 7,\r\n        \"value\": \"Staklo\"\r\n        },\r\n        {\r\n        \"featureId\": 8,\r\n        \"value\": \"Rok upotrebe\"\r\n        }\r\n    ]\r\n    }"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/createFull/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"createFull",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1171"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"493-yxp/94GiIhhFGB3t3TxQfmNwCXY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 Aug 2020 20:35:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": 2,\n    \"name\": \"Livadski Med\",\n    \"categoryId\": 5,\n    \"excerpt\": \"Prirodan livadski med\",\n    \"description\": \"Detaljan opis\",\n    \"status\": \"available\",\n    \"isPromoted\": 0,\n    \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1\n    },\n    \"articleFeatures\": [\n        {\n            \"articleFeatureId\": 7,\n            \"articleId\": 2,\n            \"featureId\": 1,\n            \"value\": \"Medna Kuća Spasić\"\n        },\n        {\n            \"articleFeatureId\": 8,\n            \"articleId\": 2,\n            \"featureId\": 4,\n            \"value\": \"Livadski\"\n        },\n        {\n            \"articleFeatureId\": 9,\n            \"articleId\": 2,\n            \"featureId\": 5,\n            \"value\": \"Vrcani\"\n        },\n        {\n            \"articleFeatureId\": 10,\n            \"articleId\": 2,\n            \"featureId\": 6,\n            \"value\": \"1kg\"\n        },\n        {\n            \"articleFeatureId\": 11,\n            \"articleId\": 2,\n            \"featureId\": 7,\n            \"value\": \"Staklo\"\n        },\n        {\n            \"articleFeatureId\": 12,\n            \"articleId\": 2,\n            \"featureId\": 8,\n            \"value\": \"Rok upotrebe\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Proizvođač\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Vrsta\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Tip\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Neto težina\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 7,\n            \"name\": \"Ambalaža\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Rok upotrebe\",\n            \"categoryId\": 5\n        }\n    ],\n    \"articlePrices\": [\n        {\n            \"articlePriceId\": 4,\n            \"articleId\": 2,\n            \"price\": \"800.00\",\n            \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload article Photo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/nenad/Desktop/bagremov med.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/article/1/uploadPhoto/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"1",
+								"uploadPhoto",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Upload article Photo - success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/nenad/Desktop/bagremov med.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/1/uploadPhoto/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"1",
+										"uploadPhoto",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-lmQTUKz9bbCV43hcxOvRS5GiJqY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Aug 2020 17:43:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": \"1\",\n    \"imagePath\": \"2020826-9361580863-bagremov-med.jpg\",\n    \"photoId\": 4\n}"
+						},
+						{
+							"name": "Upload article Photo -  Bad file extension",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/nenad/AppData/Local/Postman/Postman.exe"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/1/uploadPhoto/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"1",
+										"uploadPhoto",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-sjlKhftl0hMzrTdJzlZeCiH14CM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Aug 2020 23:19:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Error\",\n    \"statusCode\": -4002,\n    \"message\": \"Bad file extension\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a single article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/article/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get a single article - success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/article/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1434"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"59a-/Tsjkej8R4X0gm02VS7XxUU76jM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Aug 2020 17:43:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": 1,\n    \"name\": \"Bagremov med 1kg\",\n    \"categoryId\": 5,\n    \"excerpt\": \"Kratak opis\",\n    \"description\": \"Detaljan opis\",\n    \"status\": \"available\",\n    \"isPromoted\": 0,\n    \"createdAt\": \"2020-08-21T22:50:46.000Z\",\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1\n    },\n    \"photos\": [\n        {\n            \"photoId\": 4,\n            \"articleId\": 1,\n            \"imagePath\": \"2020826-9361580863-bagremov-med.jpg\"\n        }\n    ],\n    \"articlePrices\": [\n        {\n            \"articlePriceId\": 1,\n            \"articleId\": 1,\n            \"price\": \"800.00\",\n            \"createdAt\": \"2020-08-21T23:28:06.000Z\"\n        },\n        {\n            \"articlePriceId\": 2,\n            \"articleId\": 1,\n            \"price\": \"700.00\",\n            \"createdAt\": \"2020-08-21T23:28:17.000Z\"\n        },\n        {\n            \"articlePriceId\": 3,\n            \"articleId\": 1,\n            \"price\": \"800.00\",\n            \"createdAt\": \"2020-08-21T23:28:29.000Z\"\n        }\n    ],\n    \"articleFeatures\": [\n        {\n            \"articleFeatureId\": 1,\n            \"articleId\": 1,\n            \"featureId\": 1,\n            \"value\": \"Medna Kuća Spasić\"\n        },\n        {\n            \"articleFeatureId\": 2,\n            \"articleId\": 1,\n            \"featureId\": 4,\n            \"value\": \"Bagremov\"\n        },\n        {\n            \"articleFeatureId\": 3,\n            \"articleId\": 1,\n            \"featureId\": 5,\n            \"value\": \"Vrcani\"\n        },\n        {\n            \"articleFeatureId\": 4,\n            \"articleId\": 1,\n            \"featureId\": 6,\n            \"value\": \"1 kg\"\n        },\n        {\n            \"articleFeatureId\": 5,\n            \"articleId\": 1,\n            \"featureId\": 7,\n            \"value\": \"Staklo\"\n        },\n        {\n            \"articleFeatureId\": 6,\n            \"articleId\": 1,\n            \"featureId\": 8,\n            \"value\": \"Neograničen\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Proizvođač\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Vrsta\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Tip\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Neto težina\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 7,\n            \"name\": \"Ambalaža\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Rok upotrebe\",\n            \"categoryId\": 5\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete a single article photo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/article/1/deletePhoto/5/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"1",
+								"deletePhoto",
+								"5",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a single article without editing features",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Livadski Med 1kg\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livaski med\",\r\n    \"description\": \"Neki mnogo zajebani description\",\r\n    \"status\": \"visible\",\r\n    \"isPromoted\": 1,\r\n    \"price\": 900,\r\n    \"features\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/article/2/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"2",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit a single article without editing features",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Livadski Med 1kg\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livaski med\",\r\n    \"description\": \"Neki mnogo zajebani description\",\r\n    \"status\": \"visible\",\r\n    \"isPromoted\": 1,\r\n    \"price\": 900,\r\n    \"features\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/2/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"2",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1281"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"501-LhwK11EFcMCh6qgLFVquf8EXoi8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 23:15:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": 2,\n    \"name\": \"Livadski Med 1kg\",\n    \"categoryId\": 5,\n    \"excerpt\": \"Prirodan livaski med\",\n    \"description\": \"Neki mnogo zajebani description\",\n    \"status\": \"visible\",\n    \"isPromoted\": 1,\n    \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1\n    },\n    \"articleFeatures\": [\n        {\n            \"articleFeatureId\": 7,\n            \"articleId\": 2,\n            \"featureId\": 1,\n            \"value\": \"Medna Kuća Spasić\"\n        },\n        {\n            \"articleFeatureId\": 8,\n            \"articleId\": 2,\n            \"featureId\": 4,\n            \"value\": \"Livadski\"\n        },\n        {\n            \"articleFeatureId\": 9,\n            \"articleId\": 2,\n            \"featureId\": 5,\n            \"value\": \"Vrcani\"\n        },\n        {\n            \"articleFeatureId\": 10,\n            \"articleId\": 2,\n            \"featureId\": 6,\n            \"value\": \"1kg\"\n        },\n        {\n            \"articleFeatureId\": 11,\n            \"articleId\": 2,\n            \"featureId\": 7,\n            \"value\": \"Staklo\"\n        },\n        {\n            \"articleFeatureId\": 12,\n            \"articleId\": 2,\n            \"featureId\": 8,\n            \"value\": \"Rok upotrebe\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Proizvođač\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Vrsta\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Tip\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Neto težina\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 7,\n            \"name\": \"Ambalaža\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Rok upotrebe\",\n            \"categoryId\": 5\n        }\n    ],\n    \"articlePrices\": [\n        {\n            \"articlePriceId\": 4,\n            \"articleId\": 2,\n            \"price\": \"800.00\",\n            \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n        },\n        {\n            \"articlePriceId\": 5,\n            \"articleId\": 2,\n            \"price\": \"900.00\",\n            \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit a single article with editing features",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Livadski Med 1kg\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livaski med\",\r\n    \"description\": \"Neki mnogo zajebani description\",\r\n    \"status\": \"visible\",\r\n    \"isPromoted\": 1,\r\n    \"price\": 900,\r\n    \"features\": [\r\n        {\r\n            \"featureId\": 1,\r\n            \"value\": \"SpasicHoney\" \r\n        },\r\n        {\r\n            \"featureId\": 4,\r\n            \"value\": \"Livada\" \r\n        },\r\n        {\r\n            \"featureId\": 5,\r\n            \"value\": \"Centrifugirani\" \r\n        },\r\n        {\r\n            \"featureId\": 6,\r\n            \"value\": \"3 kg\" \r\n        },\r\n        {\r\n            \"featureId\": 7,\r\n            \"value\": \"Plastika\" \r\n        },\r\n        {\r\n            \"featureId\": 8,\r\n            \"value\": \"12 meseci\" \r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/article/2/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"2",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit a single article with editing features",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Livadski Med 1kg\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livaski med\",\r\n    \"description\": \"Neki mnogo zajebani description\",\r\n    \"status\": \"visible\",\r\n    \"isPromoted\": 1,\r\n    \"price\": 900,\r\n    \"features\": [\r\n        {\r\n            \"featureId\": 1,\r\n            \"value\": \"SpasicHoney\" \r\n        },\r\n        {\r\n            \"featureId\": 4,\r\n            \"value\": \"Livada\" \r\n        },\r\n        {\r\n            \"featureId\": 5,\r\n            \"value\": \"Centrifugirani\" \r\n        },\r\n        {\r\n            \"featureId\": 6,\r\n            \"value\": \"3 kg\" \r\n        },\r\n        {\r\n            \"featureId\": 7,\r\n            \"value\": \"Plastika\" \r\n        },\r\n        {\r\n            \"featureId\": 8,\r\n            \"value\": \"12 meseci\" \r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/2/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"2",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1282"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"502-akaUUQGkDhij0MDKjAeZA41yV38\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 23:26:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": 2,\n    \"name\": \"Livadski Med 1kg\",\n    \"categoryId\": 5,\n    \"excerpt\": \"Prirodan livaski med\",\n    \"description\": \"Neki mnogo zajebani description\",\n    \"status\": \"visible\",\n    \"isPromoted\": 1,\n    \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1\n    },\n    \"articleFeatures\": [\n        {\n            \"articleFeatureId\": 13,\n            \"articleId\": 2,\n            \"featureId\": 1,\n            \"value\": \"SpasicHoney\"\n        },\n        {\n            \"articleFeatureId\": 14,\n            \"articleId\": 2,\n            \"featureId\": 4,\n            \"value\": \"Livada\"\n        },\n        {\n            \"articleFeatureId\": 15,\n            \"articleId\": 2,\n            \"featureId\": 5,\n            \"value\": \"Centrifugirani\"\n        },\n        {\n            \"articleFeatureId\": 16,\n            \"articleId\": 2,\n            \"featureId\": 6,\n            \"value\": \"3 kg\"\n        },\n        {\n            \"articleFeatureId\": 17,\n            \"articleId\": 2,\n            \"featureId\": 7,\n            \"value\": \"Plastika\"\n        },\n        {\n            \"articleFeatureId\": 18,\n            \"articleId\": 2,\n            \"featureId\": 8,\n            \"value\": \"12 meseci\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Proizvođač\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Vrsta\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Tip\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Neto težina\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 7,\n            \"name\": \"Ambalaža\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Rok upotrebe\",\n            \"categoryId\": 5\n        }\n    ],\n    \"articlePrices\": [\n        {\n            \"articlePriceId\": 4,\n            \"articleId\": 2,\n            \"price\": \"800.00\",\n            \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n        },\n        {\n            \"articlePriceId\": 5,\n            \"articleId\": 2,\n            \"price\": \"900.00\",\n            \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a29a6d47-ac86-409a-bbef-7d9f2fea86c2",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "95fac51d-6b22-45e3-bc02-66152ba08abd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Administrator login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/administrator/login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"administrator",
+								"login",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login - when administrator exist, but the password is not correct",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin1\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-yGnd1fUn+KRemOJUJKfIJoExxS4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Aug 2020 00:27:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": -3002,\n    \"message\": null\n}"
+						},
+						{
+							"name": "Login - when the administrator does  not exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin1\",\r\n    \"password\": \"admin\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-jVzHjGg0W81AgoBNOOnaoLkouLY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Aug 2020 00:28:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": -3001,\n    \"message\": null\n}"
+						},
+						{
+							"name": "Login - when the administator exist and the password is correct",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "290"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"122-qG6Rvr1pAoc7iAVgaNgYZJMw8e0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Aug 2020 00:22:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"administratorId\": 8,\n    \"username\": \"admin\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbmlzdHJhdG9ySWQiOjgsInVzZXJuYW1lIjoiYWRtaW4iLCJleHQiOjE1OTk1MjQ1MzcuMDI0LCJpcCI6Ijo6MSIsInVhIjoiUG9zdG1hblJ1bnRpbWUvNy4yNi4zIiwiaWF0IjoxNTk4MzE0OTM3fQ._gDjzWEiEI3DC0q8kJxm6OoTeAwlQTBzDjwtRFz1k2Y\"\n}"
+						}
+					]
+				},
+				{
+					"name": "User login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"nekinovi@mail.rs\",\r\n    \"password\": \"nekipassword\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"login",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"nekinovi@mail.rs\",\r\n    \"password\": \"nekipassword\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/user/login/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"user",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "285"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11d-2pu2yLIQGSKFe5v1CdRUQf4xBkk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Aug 2020 01:16:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"identity\": \"nekinovi@mail.rs\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWRlbnRpdHkiOiJuZWtpbm92aUBtYWlsLnJzIiwiZXh0IjoxNTk5Nzg2OTk5LjkxMywiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuMyIsImlhdCI6MTU5ODU3NzM5OX0.hVTxtvS8o1BL7vDkqzGz5x70C22SLsiJLfnoVsxSCgU\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Register a new user account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"nekinovi@mail.rs\",\r\n    \"password\": \"nekipassword\",\r\n    \"forename\": \"Imence\",\r\n    \"surname\": \"Prezimetina\",\r\n    \"phoneNumber\": \"+38160666124\",\r\n    \"postalAddress\": \"Neka adresa bb, 18000 Nis\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/register/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0dc33fb9-3ecf-4854-a1b9-7d7f5a0c389d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f2874fe-647d-4a22-97a2-248653094f13",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Feature",
+			"item": [
+				{
+					"name": "Get all features",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/feature/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"feature",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all features",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/feature/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"feature",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "960"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c0-17NgO4i/ZejBSZXp44MU3oGmFmw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 16:09:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"featureId\": 7,\n        \"name\": \"Ambalaža\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    },\n    {\n        \"featureId\": 6,\n        \"name\": \"Neto težina\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    },\n    {\n        \"featureId\": 1,\n        \"name\": \"Proizvođač\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    },\n    {\n        \"featureId\": 8,\n        \"name\": \"Rok upotrebe\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    },\n    {\n        \"featureId\": 5,\n        \"name\": \"Tip\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    },\n    {\n        \"featureId\": 4,\n        \"name\": \"Vrsta\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get s single feature",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/feature/5/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"feature",
+								"5",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get s single feature",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/feature/5/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"feature",
+										"5",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "153"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"99-MXib3EEMHMGtzgxzzxwsMo0raCM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 16:10:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"featureId\": 5,\n    \"name\": \"Tip\",\n    \"categoryId\": 5,\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1\n    }\n}"
+						},
+						{
+							"name": "Get all features - succes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/feature/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"feature",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "300"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12c-mSjaaDgJEp7AzOq2ItScsuZjZX8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 15:57:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"featureId\": 7,\n        \"name\": \"Ambalaža\",\n        \"categoryId\": 5\n    },\n    {\n        \"featureId\": 6,\n        \"name\": \"Neto težina\",\n        \"categoryId\": 5\n    },\n    {\n        \"featureId\": 1,\n        \"name\": \"Proizvođač\",\n        \"categoryId\": 5\n    },\n    {\n        \"featureId\": 8,\n        \"name\": \"Rok upotrebe\",\n        \"categoryId\": 5\n    },\n    {\n        \"featureId\": 5,\n        \"name\": \"Tip\",\n        \"categoryId\": 5\n    },\n    {\n        \"featureId\": 4,\n        \"name\": \"Vrsta\",\n        \"categoryId\": 5\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Add a new feature",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Proizvođač\",\r\n    \"categoryId\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/feature/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"feature",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add a new feature",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Proizvođač\",\r\n    \"categoryId\": 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/feature/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"feature",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "175"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"af-Dv5BDYP0V0oLegO5Y5G59RFapLE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 21:38:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"featureId\": 12,\n    \"name\": \"Proizvođač\",\n    \"categoryId\": 6,\n    \"category\": {\n        \"categoryId\": 6,\n        \"name\": \"Matična Mleč\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/mlec.jpg\",\n        \"parentCategoryId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit a single feature",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Proizvođač\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/feature/12/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"feature",
+								"12",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit a single feature",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Proizvođač\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/feature/12/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"feature",
+										"12",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "175"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"af-Dv5BDYP0V0oLegO5Y5G59RFapLE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 21:40:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"featureId\": 12,\n    \"name\": \"Proizvođač\",\n    \"categoryId\": 6,\n    \"category\": {\n        \"categoryId\": 6,\n        \"name\": \"Matična Mleč\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/mlec.jpg\",\n        \"parentCategoryId\": 1\n    }\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "eaaf5390-9b02-4da9-9c85-5acb41ab0e9f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "53284433-6c63-40f1-b86b-be69c889d742",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjo4LCJpZGVudGl0eSI6ImFkbWluIiwiZXh0IjoxNTk5ODcwMzEyLjE5NiwiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuMyIsImlhdCI6MTU5ODY2MDcxMn0.5JH6r64fuIO-ZqM3Us-X3gT5cpzQ1yNNoXgMknwNDhI",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9a55c65c-a1a7-4276-880b-49a94f8110e2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "bc673d96-6b5b-4449-b08d-86a188387863",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
