@@ -52,7 +52,32 @@ export class OrderService {
                 "cart.cartArticles.article.articlePrices",
             ],
         });
+    }
 
+    async getById(orderId: number) {
+        return await this.order.findOne(orderId, {
+            relations: [
+                "cart",
+                "cart.user",
+                "cart.cartArticles",
+                "cart.cartArticles.article",
+                "cart.cartArticles.article.category",
+                "cart.cartArticles.article.articlePrices",
+            ],
+        });
+    }
+
+    async changeStatus(orderId: number, newStatus: "rejected" | "accepted" | "shipped" | "pending") {
+        const order = await this.getById(orderId);
+
+        if(!order) {
+            return new ApiResponse("error", -9001, "No such order found!");
+        }
+
+        order.status = newStatus;
+
+        await this.order.save(order);
+        return await this.getById(orderId);
     }
 
 }

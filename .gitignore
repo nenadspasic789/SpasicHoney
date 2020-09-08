@@ -37,3 +37,4 @@ lerna-debug.log*
 .env
 config/database.configuration.ts
 config/jwt.secret.ts
+config/mail.config.ts
