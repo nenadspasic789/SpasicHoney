@@ -1,8 +1,8 @@
-export class JwtDataDto {
+export class JwtRefreshDataDto {
     role: "administrator" | "user";
     id: number;
     identity: string;
-    exp: number; // UNIX TIMESTAMP
+    exp: number;
     ip: string;
     ua: string;
 
