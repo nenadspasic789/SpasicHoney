@@ -1,0 +1,2987 @@
+{
+	"info": {
+		"_postman_id": "8a597d51-fd2f-4f65-af71-d3aab7b0b89d",
+		"name": "Web Service applications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Administrator",
+			"item": [
+				{
+					"name": "Get all administrators",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all administrators",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/administrator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"administrator"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "135"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"87-nxOemuetbH/wfMXx5EvsNq4Q1IQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Aug 2020 16:46:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"administratorId\": 1,\n        \"username\": \"nenad\",\n        \"passwordHash\": \"12345\"\n    },\n    {\n        \"administratorId\": 2,\n        \"username\": \"aleksandar\",\n        \"passwordHash\": \"123456\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get a single administrator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								"1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get a single administrator",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/administrator/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"administrator",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-wcrWyf3W+Ev7eLnRqjP6d5hobe0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Aug 2020 16:48:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"administratorId\": 1,\n    \"username\": \"nenad\",\n    \"passwordHash\": \"12345\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a single non-existing administrator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/700/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								"700",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new administrator",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"administrator\",\r\n    \"password\": \"administrator\"\r\n\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit an existing administrator",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"nekanovalozinkazaovogadministratoraaaa\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a non-existing administrator",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"probapassword232123\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/administrator/670/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"administrator",
+								"670",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "216d4eed-e58e-42aa-968d-012a0ca4e164",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ecd6557-859e-451c-b2be-e13453010898",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "POST createFullArticle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Livadski Medovi\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livadski med\",\r\n    \"description\": \"Detaljan opis.............................................................................................................hjhhjhjhjh\",\r\n    \"price\": 800,\r\n    \"features\":[\r\n        {\r\n        \"featureId\": 1,\r\n        \"value\": \"Medna Kuća Spasić\"\r\n        },\r\n        {\r\n        \"featureId\": 4,\r\n        \"value\": \"Livadski\"\r\n        },\r\n        {\r\n        \"featureId\": 5,\r\n        \"value\": \"Vrcani\"\r\n        },\r\n        {\r\n        \"featureId\": 6,\r\n        \"value\": \"1kg\"\r\n        },\r\n        {\r\n        \"featureId\": 7,\r\n        \"value\": \"Staklo\"\r\n        },\r\n        {\r\n        \"featureId\": 8,\r\n        \"value\": \"Rok upotrebe\"\r\n        }\r\n    ]\r\n    }",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/article/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST createFull - success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Livadski Med\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livadski med\",\r\n    \"description\": \"Detaljan opis\",\r\n    \"price\": 800,\r\n    \"features\":[\r\n        {\r\n        \"featureId\": 1,\r\n        \"value\": \"Medna Kuća Spasić\"\r\n        },\r\n        {\r\n        \"featureId\": 4,\r\n        \"value\": \"Livadski\"\r\n        },\r\n        {\r\n        \"featureId\": 5,\r\n        \"value\": \"Vrcani\"\r\n        },\r\n        {\r\n        \"featureId\": 6,\r\n        \"value\": \"1kg\"\r\n        },\r\n        {\r\n        \"featureId\": 7,\r\n        \"value\": \"Staklo\"\r\n        },\r\n        {\r\n        \"featureId\": 8,\r\n        \"value\": \"Rok upotrebe\"\r\n        }\r\n    ]\r\n    }"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/createFull/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"createFull",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1171"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"493-yxp/94GiIhhFGB3t3TxQfmNwCXY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 Aug 2020 20:35:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": 2,\n    \"name\": \"Livadski Med\",\n    \"categoryId\": 5,\n    \"excerpt\": \"Prirodan livadski med\",\n    \"description\": \"Detaljan opis\",\n    \"status\": \"available\",\n    \"isPromoted\": 0,\n    \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1\n    },\n    \"articleFeatures\": [\n        {\n            \"articleFeatureId\": 7,\n            \"articleId\": 2,\n            \"featureId\": 1,\n            \"value\": \"Medna Kuća Spasić\"\n        },\n        {\n            \"articleFeatureId\": 8,\n            \"articleId\": 2,\n            \"featureId\": 4,\n            \"value\": \"Livadski\"\n        },\n        {\n            \"articleFeatureId\": 9,\n            \"articleId\": 2,\n            \"featureId\": 5,\n            \"value\": \"Vrcani\"\n        },\n        {\n            \"articleFeatureId\": 10,\n            \"articleId\": 2,\n            \"featureId\": 6,\n            \"value\": \"1kg\"\n        },\n        {\n            \"articleFeatureId\": 11,\n            \"articleId\": 2,\n            \"featureId\": 7,\n            \"value\": \"Staklo\"\n        },\n        {\n            \"articleFeatureId\": 12,\n            \"articleId\": 2,\n            \"featureId\": 8,\n            \"value\": \"Rok upotrebe\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Proizvođač\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Vrsta\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Tip\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Neto težina\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 7,\n            \"name\": \"Ambalaža\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Rok upotrebe\",\n            \"categoryId\": 5\n        }\n    ],\n    \"articlePrices\": [\n        {\n            \"articlePriceId\": 4,\n            \"articleId\": 2,\n            \"price\": \"800.00\",\n            \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "POST create full article",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Livadski Medovi\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livadski med\",\r\n    \"description\": \"Detaljan opis.............................................................................................................hjhhjhjhjh\",\r\n    \"price\": 800,\r\n    \"features\":[\r\n        {\r\n        \"featureId\": 1,\r\n        \"value\": \"Medna Kuća Spasić\"\r\n        },\r\n        {\r\n        \"featureId\": 4,\r\n        \"value\": \"Livadski\"\r\n        },\r\n        {\r\n        \"featureId\": 5,\r\n        \"value\": \"Vrcani\"\r\n        },\r\n        {\r\n        \"featureId\": 6,\r\n        \"value\": \"1kg\"\r\n        },\r\n        {\r\n        \"featureId\": 7,\r\n        \"value\": \"Staklo\"\r\n        },\r\n        {\r\n        \"featureId\": 8,\r\n        \"value\": \"Rok upotrebe\"\r\n        }\r\n    ]\r\n    }",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1296"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"510-28TJ/+ZM6EJaeQpJ71P+eqNdk7c\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 10 Nov 2020 01:10:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": 3,\n    \"name\": \"Livadski Medovi\",\n    \"categoryId\": 5,\n    \"excerpt\": \"Prirodan livadski med\",\n    \"description\": \"Detaljan opis.............................................................................................................hjhhjhjhjh\",\n    \"status\": \"available\",\n    \"isPromoted\": 0,\n    \"createdAt\": \"2020-11-10T01:10:30.000Z\",\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1\n    },\n    \"articleFeatures\": [\n        {\n            \"articleFeatureId\": 19,\n            \"articleId\": 3,\n            \"featureId\": 1,\n            \"value\": \"Medna Kuća Spasić\"\n        },\n        {\n            \"articleFeatureId\": 20,\n            \"articleId\": 3,\n            \"featureId\": 4,\n            \"value\": \"Livadski\"\n        },\n        {\n            \"articleFeatureId\": 21,\n            \"articleId\": 3,\n            \"featureId\": 5,\n            \"value\": \"Vrcani\"\n        },\n        {\n            \"articleFeatureId\": 22,\n            \"articleId\": 3,\n            \"featureId\": 6,\n            \"value\": \"1kg\"\n        },\n        {\n            \"articleFeatureId\": 23,\n            \"articleId\": 3,\n            \"featureId\": 7,\n            \"value\": \"Staklo\"\n        },\n        {\n            \"articleFeatureId\": 24,\n            \"articleId\": 3,\n            \"featureId\": 8,\n            \"value\": \"Rok upotrebe\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Proizvođač\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Vrsta\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Tip\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Neto težina\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 7,\n            \"name\": \"Ambalaža\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Rok upotrebe\",\n            \"categoryId\": 5\n        }\n    ],\n    \"articlePrices\": [\n        {\n            \"articlePriceId\": 6,\n            \"articleId\": 3,\n            \"price\": \"800.00\",\n            \"createdAt\": \"2020-11-10T01:10:30.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload article Photo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/nenad/Desktop/honey-shop_4.jpg"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/article/3/uploadPhoto/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"3",
+								"uploadPhoto",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Upload article Photo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/nenad/Desktop/12715977_10208968591321337_6171048678126644679_o.jpg"
+										}
+									],
+									"options": {
+										"formdata": {}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/3/uploadPhoto/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"3",
+										"uploadPhoto",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "116"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"74-XfrAx8gnG1ROmkTxsyVVDpHXRhg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 10 Nov 2020 01:12:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": \"3\",\n    \"imagePath\": \"20201110-8728672033-12715977_10208968591321337_6171048678126644679_o.jpg\",\n    \"photoId\": 7\n}"
+						},
+						{
+							"name": "Upload article Photo - success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/nenad/Desktop/bagremov med.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/1/uploadPhoto/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"1",
+										"uploadPhoto",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-lmQTUKz9bbCV43hcxOvRS5GiJqY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Aug 2020 17:43:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": \"1\",\n    \"imagePath\": \"2020826-9361580863-bagremov-med.jpg\",\n    \"photoId\": 4\n}"
+						},
+						{
+							"name": "Upload article Photo -  Bad file extension",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/nenad/AppData/Local/Postman/Postman.exe"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/1/uploadPhoto/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"1",
+										"uploadPhoto",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-sjlKhftl0hMzrTdJzlZeCiH14CM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Aug 2020 23:19:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Error\",\n    \"statusCode\": -4002,\n    \"message\": \"Bad file extension\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a single article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/article/3/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"3",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get a single article - success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/article/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1434"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"59a-/Tsjkej8R4X0gm02VS7XxUU76jM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Aug 2020 17:43:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": 1,\n    \"name\": \"Bagremov med 1kg\",\n    \"categoryId\": 5,\n    \"excerpt\": \"Kratak opis\",\n    \"description\": \"Detaljan opis\",\n    \"status\": \"available\",\n    \"isPromoted\": 0,\n    \"createdAt\": \"2020-08-21T22:50:46.000Z\",\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1\n    },\n    \"photos\": [\n        {\n            \"photoId\": 4,\n            \"articleId\": 1,\n            \"imagePath\": \"2020826-9361580863-bagremov-med.jpg\"\n        }\n    ],\n    \"articlePrices\": [\n        {\n            \"articlePriceId\": 1,\n            \"articleId\": 1,\n            \"price\": \"800.00\",\n            \"createdAt\": \"2020-08-21T23:28:06.000Z\"\n        },\n        {\n            \"articlePriceId\": 2,\n            \"articleId\": 1,\n            \"price\": \"700.00\",\n            \"createdAt\": \"2020-08-21T23:28:17.000Z\"\n        },\n        {\n            \"articlePriceId\": 3,\n            \"articleId\": 1,\n            \"price\": \"800.00\",\n            \"createdAt\": \"2020-08-21T23:28:29.000Z\"\n        }\n    ],\n    \"articleFeatures\": [\n        {\n            \"articleFeatureId\": 1,\n            \"articleId\": 1,\n            \"featureId\": 1,\n            \"value\": \"Medna Kuća Spasić\"\n        },\n        {\n            \"articleFeatureId\": 2,\n            \"articleId\": 1,\n            \"featureId\": 4,\n            \"value\": \"Bagremov\"\n        },\n        {\n            \"articleFeatureId\": 3,\n            \"articleId\": 1,\n            \"featureId\": 5,\n            \"value\": \"Vrcani\"\n        },\n        {\n            \"articleFeatureId\": 4,\n            \"articleId\": 1,\n            \"featureId\": 6,\n            \"value\": \"1 kg\"\n        },\n        {\n            \"articleFeatureId\": 5,\n            \"articleId\": 1,\n            \"featureId\": 7,\n            \"value\": \"Staklo\"\n        },\n        {\n            \"articleFeatureId\": 6,\n            \"articleId\": 1,\n            \"featureId\": 8,\n            \"value\": \"Neograničen\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Proizvođač\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Vrsta\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Tip\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Neto težina\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 7,\n            \"name\": \"Ambalaža\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Rok upotrebe\",\n            \"categoryId\": 5\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete a single article photo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/article/3/deletePhoto/7/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"3",
+								"deletePhoto",
+								"7",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a single article without editing features",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Livadski Med 1kg\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan Livaski Med\",\r\n    \"description\": \"Neki mnogo zajebani description  i mora biti dugacak tekst. bla bla bla okokokokokokokokokokokokoko.........Valjda je sada ok, nije mora jos jebenih karaktera\",\r\n    \"status\": \"visible\",\r\n    \"isPromoted\": 1,\r\n    \"price\": 900,\r\n    \"features\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/article/2/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"2",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit a single article without editing features",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Livadski Med 1kg\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livaski med\",\r\n    \"description\": \"Neki mnogo zajebani description\",\r\n    \"status\": \"visible\",\r\n    \"isPromoted\": 1,\r\n    \"price\": 900,\r\n    \"features\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/2/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"2",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1281"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"501-LhwK11EFcMCh6qgLFVquf8EXoi8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 23:15:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": 2,\n    \"name\": \"Livadski Med 1kg\",\n    \"categoryId\": 5,\n    \"excerpt\": \"Prirodan livaski med\",\n    \"description\": \"Neki mnogo zajebani description\",\n    \"status\": \"visible\",\n    \"isPromoted\": 1,\n    \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1\n    },\n    \"articleFeatures\": [\n        {\n            \"articleFeatureId\": 7,\n            \"articleId\": 2,\n            \"featureId\": 1,\n            \"value\": \"Medna Kuća Spasić\"\n        },\n        {\n            \"articleFeatureId\": 8,\n            \"articleId\": 2,\n            \"featureId\": 4,\n            \"value\": \"Livadski\"\n        },\n        {\n            \"articleFeatureId\": 9,\n            \"articleId\": 2,\n            \"featureId\": 5,\n            \"value\": \"Vrcani\"\n        },\n        {\n            \"articleFeatureId\": 10,\n            \"articleId\": 2,\n            \"featureId\": 6,\n            \"value\": \"1kg\"\n        },\n        {\n            \"articleFeatureId\": 11,\n            \"articleId\": 2,\n            \"featureId\": 7,\n            \"value\": \"Staklo\"\n        },\n        {\n            \"articleFeatureId\": 12,\n            \"articleId\": 2,\n            \"featureId\": 8,\n            \"value\": \"Rok upotrebe\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Proizvođač\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Vrsta\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Tip\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Neto težina\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 7,\n            \"name\": \"Ambalaža\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Rok upotrebe\",\n            \"categoryId\": 5\n        }\n    ],\n    \"articlePrices\": [\n        {\n            \"articlePriceId\": 4,\n            \"articleId\": 2,\n            \"price\": \"800.00\",\n            \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n        },\n        {\n            \"articlePriceId\": 5,\n            \"articleId\": 2,\n            \"price\": \"900.00\",\n            \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit a single article with editing features",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Livadski Med 1kg\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livaski med\",\r\n    \"description\": \"Neki mnogo zajebani description  i mora biti dugacak tekst. bla bla bla okokokokokokokokokokokokoko.........Valjda je sada ok, nije mora jos jebenih karaktera\",\r\n    \"status\": \"visible\",\r\n    \"isPromoted\": 1,\r\n    \"price\": 900,\r\n    \"features\": [\r\n        {\r\n            \"featureId\": 1,\r\n            \"value\": \"SpasicHoney firma mala\" \r\n        },\r\n        {\r\n            \"featureId\": 4,\r\n            \"value\": \"Livada\" \r\n        },\r\n        {\r\n            \"featureId\": 5,\r\n            \"value\": \"Centrifugirani\" \r\n        },\r\n        {\r\n            \"featureId\": 6,\r\n            \"value\": \"3 kg\" \r\n        },\r\n        {\r\n            \"featureId\": 7,\r\n            \"value\": \"Plastika\" \r\n        },\r\n        {\r\n            \"featureId\": 8,\r\n            \"value\": \"12 meseci\" \r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/article/2/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"2",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit a single article with editing features",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Livadski Med 1kg\",\r\n    \"categoryId\": 5,\r\n    \"excerpt\": \"Prirodan livaski med\",\r\n    \"description\": \"Neki mnogo zajebani description\",\r\n    \"status\": \"visible\",\r\n    \"isPromoted\": 1,\r\n    \"price\": 900,\r\n    \"features\": [\r\n        {\r\n            \"featureId\": 1,\r\n            \"value\": \"SpasicHoney\" \r\n        },\r\n        {\r\n            \"featureId\": 4,\r\n            \"value\": \"Livada\" \r\n        },\r\n        {\r\n            \"featureId\": 5,\r\n            \"value\": \"Centrifugirani\" \r\n        },\r\n        {\r\n            \"featureId\": 6,\r\n            \"value\": \"3 kg\" \r\n        },\r\n        {\r\n            \"featureId\": 7,\r\n            \"value\": \"Plastika\" \r\n        },\r\n        {\r\n            \"featureId\": 8,\r\n            \"value\": \"12 meseci\" \r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/2/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"2",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1282"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"502-akaUUQGkDhij0MDKjAeZA41yV38\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 23:26:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articleId\": 2,\n    \"name\": \"Livadski Med 1kg\",\n    \"categoryId\": 5,\n    \"excerpt\": \"Prirodan livaski med\",\n    \"description\": \"Neki mnogo zajebani description\",\n    \"status\": \"visible\",\n    \"isPromoted\": 1,\n    \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1\n    },\n    \"articleFeatures\": [\n        {\n            \"articleFeatureId\": 13,\n            \"articleId\": 2,\n            \"featureId\": 1,\n            \"value\": \"SpasicHoney\"\n        },\n        {\n            \"articleFeatureId\": 14,\n            \"articleId\": 2,\n            \"featureId\": 4,\n            \"value\": \"Livada\"\n        },\n        {\n            \"articleFeatureId\": 15,\n            \"articleId\": 2,\n            \"featureId\": 5,\n            \"value\": \"Centrifugirani\"\n        },\n        {\n            \"articleFeatureId\": 16,\n            \"articleId\": 2,\n            \"featureId\": 6,\n            \"value\": \"3 kg\"\n        },\n        {\n            \"articleFeatureId\": 17,\n            \"articleId\": 2,\n            \"featureId\": 7,\n            \"value\": \"Plastika\"\n        },\n        {\n            \"articleFeatureId\": 18,\n            \"articleId\": 2,\n            \"featureId\": 8,\n            \"value\": \"12 meseci\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Proizvođač\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Vrsta\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Tip\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Neto težina\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 7,\n            \"name\": \"Ambalaža\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Rok upotrebe\",\n            \"categoryId\": 5\n        }\n    ],\n    \"articlePrices\": [\n        {\n            \"articlePriceId\": 4,\n            \"articleId\": 2,\n            \"price\": \"800.00\",\n            \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n        },\n        {\n            \"articlePriceId\": 5,\n            \"articleId\": 2,\n            \"price\": \"900.00\",\n            \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Search articles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\": 5,\r\n    \"keywords\": \"kg\",\r\n    \"priceMin\": 800,\r\n    \"priceMax\": 900,\r\n    \"features\": [\r\n        {\r\n            \"featureId\": 7,\r\n            \"values\": [\"staklo\", \"plastika\"]\r\n        }\r\n    ],\r\n    \"orderBy\": \"price\",\r\n    \"orderDirection\": \"ASC\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/article/search/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"search",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Search articles",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryId\": 5,\r\n    \"keywords\": \"kg\",\r\n    \"priceMin\": 800,\r\n    \"priceMax\": 900,\r\n    \"features\": [\r\n        {\r\n            \"featureId\": 7,\r\n            \"values\": [\"staklo\", \"plastika\"]\r\n        }\r\n    ],\r\n    \"orderBy\": \"price\",\r\n    \"orderDirection\": \"ASC\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/article/search/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"article",
+										"search",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2731"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"aab-AOlbR5zQ4YLT3RtCWNzbVac9p8g\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Sep 2020 20:58:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"articleId\": 1,\n        \"name\": \"Bagremov med 1kg\",\n        \"categoryId\": 5,\n        \"excerpt\": \"Kratak opis\",\n        \"description\": \"Detaljan opis\",\n        \"status\": \"available\",\n        \"isPromoted\": 0,\n        \"createdAt\": \"2020-08-21T22:50:46.000Z\",\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        },\n        \"articleFeatures\": [\n            {\n                \"articleFeatureId\": 1,\n                \"articleId\": 1,\n                \"featureId\": 1,\n                \"value\": \"Medna Kuća Spasić\"\n            },\n            {\n                \"articleFeatureId\": 2,\n                \"articleId\": 1,\n                \"featureId\": 4,\n                \"value\": \"Bagremov\"\n            },\n            {\n                \"articleFeatureId\": 3,\n                \"articleId\": 1,\n                \"featureId\": 5,\n                \"value\": \"Vrcani\"\n            },\n            {\n                \"articleFeatureId\": 4,\n                \"articleId\": 1,\n                \"featureId\": 6,\n                \"value\": \"1 kg\"\n            },\n            {\n                \"articleFeatureId\": 5,\n                \"articleId\": 1,\n                \"featureId\": 7,\n                \"value\": \"Staklo\"\n            },\n            {\n                \"articleFeatureId\": 6,\n                \"articleId\": 1,\n                \"featureId\": 8,\n                \"value\": \"Neograničen\"\n            }\n        ],\n        \"features\": [\n            {\n                \"featureId\": 1,\n                \"name\": \"Proizvođač\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 4,\n                \"name\": \"Vrsta\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 5,\n                \"name\": \"Tip\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 6,\n                \"name\": \"Neto težina\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 7,\n                \"name\": \"Ambalaža\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 8,\n                \"name\": \"Rok upotrebe\",\n                \"categoryId\": 5\n            }\n        ],\n        \"articlePrices\": [\n            {\n                \"articlePriceId\": 1,\n                \"articleId\": 1,\n                \"price\": \"800.00\",\n                \"createdAt\": \"2020-08-21T23:28:06.000Z\"\n            },\n            {\n                \"articlePriceId\": 2,\n                \"articleId\": 1,\n                \"price\": \"700.00\",\n                \"createdAt\": \"2020-08-21T23:28:17.000Z\"\n            },\n            {\n                \"articlePriceId\": 3,\n                \"articleId\": 1,\n                \"price\": \"800.00\",\n                \"createdAt\": \"2020-08-21T23:28:29.000Z\"\n            }\n        ],\n        \"photos\": [\n            {\n                \"photoId\": 6,\n                \"articleId\": 1,\n                \"imagePath\": \"2020827-7372292839-bagremov-med.jpg\"\n            }\n        ]\n    },\n    {\n        \"articleId\": 2,\n        \"name\": \"Livadski Med 1kg\",\n        \"categoryId\": 5,\n        \"excerpt\": \"Prirodan livaski med\",\n        \"description\": \"Neki mnogo zajebani description\",\n        \"status\": \"visible\",\n        \"isPromoted\": 1,\n        \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        },\n        \"articleFeatures\": [\n            {\n                \"articleFeatureId\": 13,\n                \"articleId\": 2,\n                \"featureId\": 1,\n                \"value\": \"SpasicHoney\"\n            },\n            {\n                \"articleFeatureId\": 14,\n                \"articleId\": 2,\n                \"featureId\": 4,\n                \"value\": \"Livada\"\n            },\n            {\n                \"articleFeatureId\": 15,\n                \"articleId\": 2,\n                \"featureId\": 5,\n                \"value\": \"Centrifugirani\"\n            },\n            {\n                \"articleFeatureId\": 16,\n                \"articleId\": 2,\n                \"featureId\": 6,\n                \"value\": \"3 kg\"\n            },\n            {\n                \"articleFeatureId\": 17,\n                \"articleId\": 2,\n                \"featureId\": 7,\n                \"value\": \"Plastika\"\n            },\n            {\n                \"articleFeatureId\": 18,\n                \"articleId\": 2,\n                \"featureId\": 8,\n                \"value\": \"12 meseci\"\n            }\n        ],\n        \"features\": [\n            {\n                \"featureId\": 1,\n                \"name\": \"Proizvođač\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 4,\n                \"name\": \"Vrsta\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 5,\n                \"name\": \"Tip\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 6,\n                \"name\": \"Neto težina\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 7,\n                \"name\": \"Ambalaža\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 8,\n                \"name\": \"Rok upotrebe\",\n                \"categoryId\": 5\n            }\n        ],\n        \"articlePrices\": [\n            {\n                \"articlePriceId\": 4,\n                \"articleId\": 2,\n                \"price\": \"800.00\",\n                \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n            },\n            {\n                \"articlePriceId\": 5,\n                \"articleId\": 2,\n                \"price\": \"900.00\",\n                \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n            }\n        ],\n        \"photos\": []\n    }\n]"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a29a6d47-ac86-409a-bbef-7d9f2fea86c2",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "95fac51d-6b22-45e3-bc02-66152ba08abd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Administrator login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"administrator\",\r\n    \"password\": \"administrator\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/administrator/login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"administrator",
+								"login",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login - when administrator exist, but the password is not correct",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin1\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-yGnd1fUn+KRemOJUJKfIJoExxS4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Aug 2020 00:27:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": -3002,\n    \"message\": null\n}"
+						},
+						{
+							"name": "Login - when the administrator does  not exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin1\",\r\n    \"password\": \"admin\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-jVzHjGg0W81AgoBNOOnaoLkouLY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Aug 2020 00:28:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": -3001,\n    \"message\": null\n}"
+						},
+						{
+							"name": "Login - when the administator exist and the password is correct",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "290"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"122-qG6Rvr1pAoc7iAVgaNgYZJMw8e0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Aug 2020 00:22:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"administratorId\": 8,\n    \"username\": \"admin\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbmlzdHJhdG9ySWQiOjgsInVzZXJuYW1lIjoiYWRtaW4iLCJleHQiOjE1OTk1MjQ1MzcuMDI0LCJpcCI6Ijo6MSIsInVhIjoiUG9zdG1hblJ1bnRpbWUvNy4yNi4zIiwiaWF0IjoxNTk4MzE0OTM3fQ._gDjzWEiEI3DC0q8kJxm6OoTeAwlQTBzDjwtRFz1k2Y\"\n}"
+						}
+					]
+				},
+				{
+					"name": "User login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"devNenadSpasic@outlook.com\",\r\n    \"password\": \"dev123456\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"login",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"nekinovi@mail.rs\",\r\n    \"password\": \"nekipassword\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/user/login/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"user",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "285"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11d-2pu2yLIQGSKFe5v1CdRUQf4xBkk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Aug 2020 01:16:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"identity\": \"nekinovi@mail.rs\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWRlbnRpdHkiOiJuZWtpbm92aUBtYWlsLnJzIiwiZXh0IjoxNTk5Nzg2OTk5LjkxMywiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuMyIsImlhdCI6MTU5ODU3NzM5OX0.hVTxtvS8o1BL7vDkqzGz5x70C22SLsiJLfnoVsxSCgU\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Register a new user account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"devNenadSpasic@outlook.com\",\r\n    \"password\": \"dev123456\",\r\n    \"forename\": \"Nenad\",\r\n    \"surname\": \"Spasic\",\r\n    \"phoneNumber\": \"+381600331088\",\r\n    \"postalAddress\": \"Mokranjceva 2, 18000 Nis\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/register/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh user token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo4LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXh0IjoxNjAyMjA5MDY2Ljk5MiwiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuMyIsImlhdCI6MTU5OTUzMDY2Nn0.XxcXCje2KMiyG2Yr66GSbEivK35yCY3057lBAszBzyQ\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/refresh/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0dc33fb9-3ecf-4854-a1b9-7d7f5a0c389d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f2874fe-647d-4a22-97a2-248653094f13",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Feature",
+			"item": [
+				{
+					"name": "Get all features",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/feature/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"feature",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all features",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/feature/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"feature",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "960"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c0-17NgO4i/ZejBSZXp44MU3oGmFmw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 16:09:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"featureId\": 7,\n        \"name\": \"Ambalaža\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    },\n    {\n        \"featureId\": 6,\n        \"name\": \"Neto težina\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    },\n    {\n        \"featureId\": 1,\n        \"name\": \"Proizvođač\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    },\n    {\n        \"featureId\": 8,\n        \"name\": \"Rok upotrebe\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    },\n    {\n        \"featureId\": 5,\n        \"name\": \"Tip\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    },\n    {\n        \"featureId\": 4,\n        \"name\": \"Vrsta\",\n        \"categoryId\": 5,\n        \"category\": {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get s single feature",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/feature/5/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"feature",
+								"5",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get s single feature",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/feature/5/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"feature",
+										"5",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "153"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"99-MXib3EEMHMGtzgxzzxwsMo0raCM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 16:10:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"featureId\": 5,\n    \"name\": \"Tip\",\n    \"categoryId\": 5,\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1\n    }\n}"
+						},
+						{
+							"name": "Get all features - succes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/feature/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"feature",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "300"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12c-mSjaaDgJEp7AzOq2ItScsuZjZX8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 15:57:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"featureId\": 7,\n        \"name\": \"Ambalaža\",\n        \"categoryId\": 5\n    },\n    {\n        \"featureId\": 6,\n        \"name\": \"Neto težina\",\n        \"categoryId\": 5\n    },\n    {\n        \"featureId\": 1,\n        \"name\": \"Proizvođač\",\n        \"categoryId\": 5\n    },\n    {\n        \"featureId\": 8,\n        \"name\": \"Rok upotrebe\",\n        \"categoryId\": 5\n    },\n    {\n        \"featureId\": 5,\n        \"name\": \"Tip\",\n        \"categoryId\": 5\n    },\n    {\n        \"featureId\": 4,\n        \"name\": \"Vrsta\",\n        \"categoryId\": 5\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Add a new feature",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pakuje\",\r\n    \"categoryId\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/feature/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"feature",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add a new feature",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Proizvođač\",\r\n    \"categoryId\": 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/feature/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"feature",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "175"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"af-Dv5BDYP0V0oLegO5Y5G59RFapLE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 21:38:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"featureId\": 12,\n    \"name\": \"Proizvođač\",\n    \"categoryId\": 6,\n    \"category\": {\n        \"categoryId\": 6,\n        \"name\": \"Matična Mleč\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/mlec.jpg\",\n        \"parentCategoryId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit a single feature",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Neto tezina\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/feature/6/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"feature",
+								"6",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit a single feature",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Proizvođač\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/feature/12/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"feature",
+										"12",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "175"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"af-Dv5BDYP0V0oLegO5Y5G59RFapLE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Aug 2020 21:40:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"featureId\": 12,\n    \"name\": \"Proizvođač\",\n    \"categoryId\": 6,\n    \"category\": {\n        \"categoryId\": 6,\n        \"name\": \"Matična Mleč\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/mlec.jpg\",\n        \"parentCategoryId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get distinct values for features of a single category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/feature/values/5/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"feature",
+								"values",
+								"5",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "eaaf5390-9b02-4da9-9c85-5acb41ab0e9f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "53284433-6c63-40f1-b86b-be69c889d742",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cart and Order",
+			"item": [
+				{
+					"name": "Get current cart details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user/cart/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"cart",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get current cart details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/user/cart/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"cart",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "779"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30b-7n7dyBzakfUlvVWLTE7vOlLtg/8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Aug 2020 19:54:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cartId\": 2,\n    \"userId\": 3,\n    \"createdAt\": \"2020-08-29T19:53:09.000Z\",\n    \"user\": {\n        \"userId\": 3,\n        \"email\": \"nekinovi@mail.rs\",\n        \"passwordHash\": \"621AD81CDB3433D5D7480BD076CFEFC0776BE4E55AE369F182B69D3F5A15125E6806DB72158B4C1201130F9EBB74A3C20180385FD71DC8FC052AD4BAD62A6D02\",\n        \"forename\": \"Imence\",\n        \"surename\": \"Prezimetina\",\n        \"phoneNumber\": \"+38160666124\",\n        \"postalAddress\": \"Neka adresa bb, 18000 Nis\"\n    },\n    \"cartArticles\": [\n        {\n            \"cartArticleId\": 3,\n            \"cartId\": 2,\n            \"articleId\": 2,\n            \"quantity\": 4,\n            \"article\": {\n                \"articleId\": 2,\n                \"name\": \"Livadski Med 1kg\",\n                \"categoryId\": 5,\n                \"excerpt\": \"Prirodan livaski med\",\n                \"description\": \"Neki mnogo zajebani description\",\n                \"status\": \"visible\",\n                \"isPromoted\": 1,\n                \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                \"category\": {\n                    \"categoryId\": 5,\n                    \"name\": \"Med\",\n                    \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                    \"parentCategoryId\": 1\n                }\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Add article to the current cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"articleId\": 2,\r\n    \"quantity\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/cart/addToCart/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"cart",
+								"addToCart",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add article to the current cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"articleId\": 2,\r\n    \"quantity\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/user/cart/addToCart/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"cart",
+										"addToCart",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "779"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30b-7n7dyBzakfUlvVWLTE7vOlLtg/8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Aug 2020 19:53:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cartId\": 2,\n    \"userId\": 3,\n    \"createdAt\": \"2020-08-29T19:53:09.000Z\",\n    \"user\": {\n        \"userId\": 3,\n        \"email\": \"nekinovi@mail.rs\",\n        \"passwordHash\": \"621AD81CDB3433D5D7480BD076CFEFC0776BE4E55AE369F182B69D3F5A15125E6806DB72158B4C1201130F9EBB74A3C20180385FD71DC8FC052AD4BAD62A6D02\",\n        \"forename\": \"Imence\",\n        \"surename\": \"Prezimetina\",\n        \"phoneNumber\": \"+38160666124\",\n        \"postalAddress\": \"Neka adresa bb, 18000 Nis\"\n    },\n    \"cartArticles\": [\n        {\n            \"cartArticleId\": 3,\n            \"cartId\": 2,\n            \"articleId\": 2,\n            \"quantity\": 4,\n            \"article\": {\n                \"articleId\": 2,\n                \"name\": \"Livadski Med 1kg\",\n                \"categoryId\": 5,\n                \"excerpt\": \"Prirodan livaski med\",\n                \"description\": \"Neki mnogo zajebani description\",\n                \"status\": \"visible\",\n                \"isPromoted\": 1,\n                \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                \"category\": {\n                    \"categoryId\": 5,\n                    \"name\": \"Med\",\n                    \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                    \"parentCategoryId\": 1\n                }\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Change article quantity in the current cart",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"articleId\": 2,\r\n    \"quantity\": 11\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/cart/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"cart",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Change article quantity in the current cart",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"articleId\": 2,\r\n    \"quantity\": 11\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/user/cart/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"cart",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "780"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30c-p+MiC9MfpOZ/AehoJCHf1E63Qr4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Aug 2020 20:18:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cartId\": 2,\n    \"userId\": 3,\n    \"createdAt\": \"2020-08-29T19:53:09.000Z\",\n    \"user\": {\n        \"userId\": 3,\n        \"email\": \"nekinovi@mail.rs\",\n        \"passwordHash\": \"621AD81CDB3433D5D7480BD076CFEFC0776BE4E55AE369F182B69D3F5A15125E6806DB72158B4C1201130F9EBB74A3C20180385FD71DC8FC052AD4BAD62A6D02\",\n        \"forename\": \"Imence\",\n        \"surename\": \"Prezimetina\",\n        \"phoneNumber\": \"+38160666124\",\n        \"postalAddress\": \"Neka adresa bb, 18000 Nis\"\n    },\n    \"cartArticles\": [\n        {\n            \"cartArticleId\": 5,\n            \"cartId\": 2,\n            \"articleId\": 2,\n            \"quantity\": 11,\n            \"article\": {\n                \"articleId\": 2,\n                \"name\": \"Livadski Med 1kg\",\n                \"categoryId\": 5,\n                \"excerpt\": \"Prirodan livaski med\",\n                \"description\": \"Neki mnogo zajebani description\",\n                \"status\": \"visible\",\n                \"isPromoted\": 1,\n                \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                \"category\": {\n                    \"categoryId\": 5,\n                    \"name\": \"Med\",\n                    \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                    \"parentCategoryId\": 1\n                }\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Make an order for the current cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user/cart/makeOrder/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"cart",
+								"makeOrder",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Make an order for the current cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/user/cart/makeOrder/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"cart",
+										"makeOrder",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1069"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42d-w0lJQZel212iMsz5rLSpw1E1xf0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Aug 2020 21:19:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orderId\": 4,\n    \"createdAt\": \"2020-08-29T21:19:23.000Z\",\n    \"cartId\": 4,\n    \"status\": \"pending\",\n    \"cart\": {\n        \"cartId\": 4,\n        \"userId\": 3,\n        \"createdAt\": \"2020-08-29T21:19:13.000Z\",\n        \"user\": {\n            \"userId\": 3,\n            \"email\": \"nekinovi@mail.rs\",\n            \"passwordHash\": \"621AD81CDB3433D5D7480BD076CFEFC0776BE4E55AE369F182B69D3F5A15125E6806DB72158B4C1201130F9EBB74A3C20180385FD71DC8FC052AD4BAD62A6D02\",\n            \"forename\": \"Imence\",\n            \"surename\": \"Prezimetina\",\n            \"phoneNumber\": \"+38160666124\",\n            \"postalAddress\": \"Neka adresa bb, 18000 Nis\"\n        },\n        \"cartArticles\": [\n            {\n                \"cartArticleId\": 7,\n                \"cartId\": 4,\n                \"articleId\": 2,\n                \"quantity\": 2,\n                \"article\": {\n                    \"articleId\": 2,\n                    \"name\": \"Livadski Med 1kg\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"Prirodan livaski med\",\n                    \"description\": \"Neki mnogo zajebani description\",\n                    \"status\": \"visible\",\n                    \"isPromoted\": 1,\n                    \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"Med\",\n                        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                        \"parentCategoryId\": 1\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 4,\n                            \"articleId\": 2,\n                            \"price\": \"800.00\",\n                            \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 5,\n                            \"articleId\": 2,\n                            \"price\": \"900.00\",\n                            \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Orders by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user/cart/orders/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"cart",
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e4357974-700c-4ef7-8a99-5e17213db312",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "787bb6d2-6770-490a-8e11-f8b3acb09251",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Get Order Information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/order/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"order",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Order Information",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/order/20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"order",
+										"20"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1861"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"745-mW4avbkI4sDiu0axL0TAhvmfsno\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Sep 2020 00:27:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orderId\": 20,\n    \"createdAt\": \"2020-09-08T00:00:44.000Z\",\n    \"cartId\": 20,\n    \"status\": \"pending\",\n    \"cart\": {\n        \"cartId\": 20,\n        \"userId\": 8,\n        \"createdAt\": \"2020-09-08T00:00:31.000Z\",\n        \"user\": {\n            \"userId\": 8,\n            \"email\": \"devNenadSpasic@outlook.com\",\n            \"passwordHash\": \"B7DB1AE211627AB1241CAF555B28A562DA2576B9A218844A4B1F0E300E8EA3E83E6CA2EB321897E6BC15B4A1124D3B752F0178AFD32D017E82C49468DFBC713E\",\n            \"forename\": \"Nenad\",\n            \"surename\": \"Spasic\",\n            \"phoneNumber\": \"+381600331088\",\n            \"postalAddress\": \"Mokranjceva 2, 18000 Nis\"\n        },\n        \"cartArticles\": [\n            {\n                \"cartArticleId\": 38,\n                \"cartId\": 20,\n                \"articleId\": 1,\n                \"quantity\": 1,\n                \"article\": {\n                    \"articleId\": 1,\n                    \"name\": \"Bagremov med 1kg\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"Kratak opis\",\n                    \"description\": \"Detaljan opis\",\n                    \"status\": \"available\",\n                    \"isPromoted\": 0,\n                    \"createdAt\": \"2020-08-21T22:50:46.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"Med\",\n                        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                        \"parentCategoryId\": 1\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 1,\n                            \"articleId\": 1,\n                            \"price\": \"800.00\",\n                            \"createdAt\": \"2020-08-21T23:28:06.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 2,\n                            \"articleId\": 1,\n                            \"price\": \"700.00\",\n                            \"createdAt\": \"2020-08-21T23:28:17.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 3,\n                            \"articleId\": 1,\n                            \"price\": \"800.00\",\n                            \"createdAt\": \"2020-08-21T23:28:29.000Z\"\n                        }\n                    ]\n                }\n            },\n            {\n                \"cartArticleId\": 37,\n                \"cartId\": 20,\n                \"articleId\": 2,\n                \"quantity\": 1,\n                \"article\": {\n                    \"articleId\": 2,\n                    \"name\": \"Livadski Med 1kg\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"Prirodan livaski med\",\n                    \"description\": \"Neki mnogo zajebani description asd asd asd asd asd asd ssa sdsdsw\",\n                    \"status\": \"visible\",\n                    \"isPromoted\": 1,\n                    \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"Med\",\n                        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                        \"parentCategoryId\": 1\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 4,\n                            \"articleId\": 2,\n                            \"price\": \"800.00\",\n                            \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 5,\n                            \"articleId\": 2,\n                            \"price\": \"900.00\",\n                            \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 6,\n                            \"articleId\": 2,\n                            \"price\": \"927.12\",\n                            \"createdAt\": \"2020-09-07T23:52:56.000Z\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Change order status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newStatus\": \"shipped\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/order/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"order",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Change order status",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newStatus\": \"shipped\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/order/19",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"order",
+										"19"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1861"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"745-81uTlIe5AVuIZZ6qrmsQXJJ2j2s\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Sep 2020 00:30:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orderId\": 19,\n    \"createdAt\": \"2020-09-07T23:55:44.000Z\",\n    \"cartId\": 19,\n    \"status\": \"shipped\",\n    \"cart\": {\n        \"cartId\": 19,\n        \"userId\": 8,\n        \"createdAt\": \"2020-09-07T23:55:13.000Z\",\n        \"user\": {\n            \"userId\": 8,\n            \"email\": \"devNenadSpasic@outlook.com\",\n            \"passwordHash\": \"B7DB1AE211627AB1241CAF555B28A562DA2576B9A218844A4B1F0E300E8EA3E83E6CA2EB321897E6BC15B4A1124D3B752F0178AFD32D017E82C49468DFBC713E\",\n            \"forename\": \"Nenad\",\n            \"surename\": \"Spasic\",\n            \"phoneNumber\": \"+381600331088\",\n            \"postalAddress\": \"Mokranjceva 2, 18000 Nis\"\n        },\n        \"cartArticles\": [\n            {\n                \"cartArticleId\": 35,\n                \"cartId\": 19,\n                \"articleId\": 1,\n                \"quantity\": 1,\n                \"article\": {\n                    \"articleId\": 1,\n                    \"name\": \"Bagremov med 1kg\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"Kratak opis\",\n                    \"description\": \"Detaljan opis\",\n                    \"status\": \"available\",\n                    \"isPromoted\": 0,\n                    \"createdAt\": \"2020-08-21T22:50:46.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"Med\",\n                        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                        \"parentCategoryId\": 1\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 1,\n                            \"articleId\": 1,\n                            \"price\": \"800.00\",\n                            \"createdAt\": \"2020-08-21T23:28:06.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 2,\n                            \"articleId\": 1,\n                            \"price\": \"700.00\",\n                            \"createdAt\": \"2020-08-21T23:28:17.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 3,\n                            \"articleId\": 1,\n                            \"price\": \"800.00\",\n                            \"createdAt\": \"2020-08-21T23:28:29.000Z\"\n                        }\n                    ]\n                }\n            },\n            {\n                \"cartArticleId\": 36,\n                \"cartId\": 19,\n                \"articleId\": 2,\n                \"quantity\": 1,\n                \"article\": {\n                    \"articleId\": 2,\n                    \"name\": \"Livadski Med 1kg\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"Prirodan livaski med\",\n                    \"description\": \"Neki mnogo zajebani description asd asd asd asd asd asd ssa sdsdsw\",\n                    \"status\": \"visible\",\n                    \"isPromoted\": 1,\n                    \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"Med\",\n                        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                        \"parentCategoryId\": 1\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 4,\n                            \"articleId\": 2,\n                            \"price\": \"800.00\",\n                            \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 5,\n                            \"articleId\": 2,\n                            \"price\": \"900.00\",\n                            \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 6,\n                            \"articleId\": 2,\n                            \"price\": \"927.12\",\n                            \"createdAt\": \"2020-09-07T23:52:56.000Z\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Change order status",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newStatus\": \"rejected\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/order/20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"order",
+										"20"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1862"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"746-siSVMqrt9N8gX/fcmRjO4XCKrPQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Sep 2020 00:29:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orderId\": 20,\n    \"createdAt\": \"2020-09-08T00:00:44.000Z\",\n    \"cartId\": 20,\n    \"status\": \"rejected\",\n    \"cart\": {\n        \"cartId\": 20,\n        \"userId\": 8,\n        \"createdAt\": \"2020-09-08T00:00:31.000Z\",\n        \"user\": {\n            \"userId\": 8,\n            \"email\": \"devNenadSpasic@outlook.com\",\n            \"passwordHash\": \"B7DB1AE211627AB1241CAF555B28A562DA2576B9A218844A4B1F0E300E8EA3E83E6CA2EB321897E6BC15B4A1124D3B752F0178AFD32D017E82C49468DFBC713E\",\n            \"forename\": \"Nenad\",\n            \"surename\": \"Spasic\",\n            \"phoneNumber\": \"+381600331088\",\n            \"postalAddress\": \"Mokranjceva 2, 18000 Nis\"\n        },\n        \"cartArticles\": [\n            {\n                \"cartArticleId\": 38,\n                \"cartId\": 20,\n                \"articleId\": 1,\n                \"quantity\": 1,\n                \"article\": {\n                    \"articleId\": 1,\n                    \"name\": \"Bagremov med 1kg\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"Kratak opis\",\n                    \"description\": \"Detaljan opis\",\n                    \"status\": \"available\",\n                    \"isPromoted\": 0,\n                    \"createdAt\": \"2020-08-21T22:50:46.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"Med\",\n                        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                        \"parentCategoryId\": 1\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 1,\n                            \"articleId\": 1,\n                            \"price\": \"800.00\",\n                            \"createdAt\": \"2020-08-21T23:28:06.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 2,\n                            \"articleId\": 1,\n                            \"price\": \"700.00\",\n                            \"createdAt\": \"2020-08-21T23:28:17.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 3,\n                            \"articleId\": 1,\n                            \"price\": \"800.00\",\n                            \"createdAt\": \"2020-08-21T23:28:29.000Z\"\n                        }\n                    ]\n                }\n            },\n            {\n                \"cartArticleId\": 37,\n                \"cartId\": 20,\n                \"articleId\": 2,\n                \"quantity\": 1,\n                \"article\": {\n                    \"articleId\": 2,\n                    \"name\": \"Livadski Med 1kg\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"Prirodan livaski med\",\n                    \"description\": \"Neki mnogo zajebani description asd asd asd asd asd asd ssa sdsdsw\",\n                    \"status\": \"visible\",\n                    \"isPromoted\": 1,\n                    \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"Med\",\n                        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                        \"parentCategoryId\": 1\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 4,\n                            \"articleId\": 2,\n                            \"price\": \"800.00\",\n                            \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 5,\n                            \"articleId\": 2,\n                            \"price\": \"900.00\",\n                            \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 6,\n                            \"articleId\": 2,\n                            \"price\": \"927.12\",\n                            \"createdAt\": \"2020-09-07T23:52:56.000Z\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all orders by Admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/order/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"order",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all orders by Admin",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/order/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"order",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "14612"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3914-uVMqENjCZ1CIomNJ/sbKQ5nqsFk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Nov 2020 14:39:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"orderId\": 2,\n        \"createdAt\": \"2020-11-10T02:30:13.000Z\",\n        \"cartId\": 2,\n        \"status\": \"shipped\",\n        \"userId\": 5,\n        \"cart\": {\n            \"cartId\": 2,\n            \"userId\": 5,\n            \"createdAt\": \"2020-11-10T02:30:13.000Z\",\n            \"user\": {\n                \"userId\": 5,\n                \"email\": \"devNenadSpasic@outlook.com\",\n                \"passwordHash\": \"B7DB1AE211627AB1241CAF555B28A562DA2576B9A218844A4B1F0E300E8EA3E83E6CA2EB321897E6BC15B4A1124D3B752F0178AFD32D017E82C49468DFBC713E\",\n                \"forename\": \"Nenad\",\n                \"surename\": \"Spasic\",\n                \"phoneNumber\": \"+381600331088\",\n                \"postalAddress\": \"Mokranjceva 2, 18000 Nis\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 1,\n                    \"cartId\": 2,\n                    \"articleId\": 2,\n                    \"quantity\": 11,\n                    \"article\": {\n                        \"articleId\": 2,\n                        \"name\": \"Livadski Med 1kg\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"Prirodan livaski med\",\n                        \"description\": \"Neki mnogo zajebani description  i mora biti dugacak tekst. bla bla bla okokokokokokokokokokokokoko.........Valjda je sada ok, nije mora jos jebenih karaktera\",\n                        \"status\": \"visible\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 4,\n                                \"articleId\": 2,\n                                \"price\": \"800.00\",\n                                \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n                            },\n                            {\n                                \"articlePriceId\": 5,\n                                \"articleId\": 2,\n                                \"price\": \"900.00\",\n                                \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 3,\n        \"createdAt\": \"2020-11-10T03:03:30.000Z\",\n        \"cartId\": 3,\n        \"status\": \"pending\",\n        \"userId\": 5,\n        \"cart\": {\n            \"cartId\": 3,\n            \"userId\": 5,\n            \"createdAt\": \"2020-11-10T03:03:30.000Z\",\n            \"user\": {\n                \"userId\": 5,\n                \"email\": \"devNenadSpasic@outlook.com\",\n                \"passwordHash\": \"B7DB1AE211627AB1241CAF555B28A562DA2576B9A218844A4B1F0E300E8EA3E83E6CA2EB321897E6BC15B4A1124D3B752F0178AFD32D017E82C49468DFBC713E\",\n                \"forename\": \"Nenad\",\n                \"surename\": \"Spasic\",\n                \"phoneNumber\": \"+381600331088\",\n                \"postalAddress\": \"Mokranjceva 2, 18000 Nis\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 2,\n                    \"cartId\": 3,\n                    \"articleId\": 3,\n                    \"quantity\": 1,\n                    \"article\": {\n                        \"articleId\": 3,\n                        \"name\": \"Livadski Medovi\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"Prirodan livadski med\",\n                        \"description\": \"Detaljan opis.............................................................................................................hjhhjhjhjh\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-11-10T01:10:30.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 6,\n                                \"articleId\": 3,\n                                \"price\": \"800.00\",\n                                \"createdAt\": \"2020-11-10T01:10:30.000Z\"\n                            }\n                        ]\n                    }\n                },\n                {\n                    \"cartArticleId\": 3,\n                    \"cartId\": 3,\n                    \"articleId\": 2,\n                    \"quantity\": 4,\n                    \"article\": {\n                        \"articleId\": 2,\n                        \"name\": \"Livadski Med 1kg\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"Prirodan livaski med\",\n                        \"description\": \"Neki mnogo zajebani description  i mora biti dugacak tekst. bla bla bla okokokokokokokokokokokokoko.........Valjda je sada ok, nije mora jos jebenih karaktera\",\n                        \"status\": \"visible\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 4,\n                                \"articleId\": 2,\n                                \"price\": \"800.00\",\n                                \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n                            },\n                            {\n                                \"articlePriceId\": 5,\n                                \"articleId\": 2,\n                                \"price\": \"900.00\",\n                                \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 4,\n        \"createdAt\": \"2020-11-10T03:05:21.000Z\",\n        \"cartId\": 4,\n        \"status\": \"pending\",\n        \"userId\": 5,\n        \"cart\": {\n            \"cartId\": 4,\n            \"userId\": 5,\n            \"createdAt\": \"2020-11-10T03:05:21.000Z\",\n            \"user\": {\n                \"userId\": 5,\n                \"email\": \"devNenadSpasic@outlook.com\",\n                \"passwordHash\": \"B7DB1AE211627AB1241CAF555B28A562DA2576B9A218844A4B1F0E300E8EA3E83E6CA2EB321897E6BC15B4A1124D3B752F0178AFD32D017E82C49468DFBC713E\",\n                \"forename\": \"Nenad\",\n                \"surename\": \"Spasic\",\n                \"phoneNumber\": \"+381600331088\",\n                \"postalAddress\": \"Mokranjceva 2, 18000 Nis\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 4,\n                    \"cartId\": 4,\n                    \"articleId\": 2,\n                    \"quantity\": 6,\n                    \"article\": {\n                        \"articleId\": 2,\n                        \"name\": \"Livadski Med 1kg\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"Prirodan livaski med\",\n                        \"description\": \"Neki mnogo zajebani description  i mora biti dugacak tekst. bla bla bla okokokokokokokokokokokokoko.........Valjda je sada ok, nije mora jos jebenih karaktera\",\n                        \"status\": \"visible\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 4,\n                                \"articleId\": 2,\n                                \"price\": \"800.00\",\n                                \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n                            },\n                            {\n                                \"articlePriceId\": 5,\n                                \"articleId\": 2,\n                                \"price\": \"900.00\",\n                                \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 5,\n        \"createdAt\": \"2020-11-14T02:01:45.000Z\",\n        \"cartId\": 5,\n        \"status\": \"pending\",\n        \"userId\": 5,\n        \"cart\": {\n            \"cartId\": 5,\n            \"userId\": 5,\n            \"createdAt\": \"2020-11-14T02:01:45.000Z\",\n            \"user\": {\n                \"userId\": 5,\n                \"email\": \"devNenadSpasic@outlook.com\",\n                \"passwordHash\": \"B7DB1AE211627AB1241CAF555B28A562DA2576B9A218844A4B1F0E300E8EA3E83E6CA2EB321897E6BC15B4A1124D3B752F0178AFD32D017E82C49468DFBC713E\",\n                \"forename\": \"Nenad\",\n                \"surename\": \"Spasic\",\n                \"phoneNumber\": \"+381600331088\",\n                \"postalAddress\": \"Mokranjceva 2, 18000 Nis\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 5,\n                    \"cartId\": 5,\n                    \"articleId\": 4,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 4,\n                        \"name\": \"Sumski Med 1kg\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"Prirodan sumski med\",\n                        \"description\": \"Prirodan sumski med... Prirodan sumski med\\nPrirodan sumski med... Prirodan sumski med\\nPrirodan sumski med... Prirodan sumski med\\nPrirodan sumski med... Prirodan sumski med\\nPrirodan sumski med... Prirodan sumski med\\nPrirodan sumski med... Prirodan sumski med\\nPrirodan sumski med... Prirodan sumski med\\nPrirodan sumski med... Prirodan sumski med\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-11-14T01:59:14.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 7,\n                                \"articleId\": 4,\n                                \"price\": \"1000.00\",\n                                \"createdAt\": \"2020-11-14T01:59:15.000Z\"\n                            },\n                            {\n                                \"articlePriceId\": 22,\n                                \"articleId\": 4,\n                                \"price\": \"1100.00\",\n                                \"createdAt\": \"2020-11-14T22:10:55.000Z\"\n                            }\n                        ]\n                    }\n                },\n                {\n                    \"cartArticleId\": 6,\n                    \"cartId\": 5,\n                    \"articleId\": 2,\n                    \"quantity\": 2,\n                    \"article\": {\n                        \"articleId\": 2,\n                        \"name\": \"Livadski Med 1kg\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"Prirodan livaski med\",\n                        \"description\": \"Neki mnogo zajebani description  i mora biti dugacak tekst. bla bla bla okokokokokokokokokokokokoko.........Valjda je sada ok, nije mora jos jebenih karaktera\",\n                        \"status\": \"visible\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 4,\n                                \"articleId\": 2,\n                                \"price\": \"800.00\",\n                                \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n                            },\n                            {\n                                \"articlePriceId\": 5,\n                                \"articleId\": 2,\n                                \"price\": \"900.00\",\n                                \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n                            }\n                        ]\n                    }\n                },\n                {\n                    \"cartArticleId\": 7,\n                    \"cartId\": 5,\n                    \"articleId\": 3,\n                    \"quantity\": 4,\n                    \"article\": {\n                        \"articleId\": 3,\n                        \"name\": \"Livadski Medovi\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"Prirodan livadski med\",\n                        \"description\": \"Detaljan opis.............................................................................................................hjhhjhjhjh\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-11-10T01:10:30.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 6,\n                                \"articleId\": 3,\n                                \"price\": \"800.00\",\n                                \"createdAt\": \"2020-11-10T01:10:30.000Z\"\n                            }\n                        ]\n                    }\n                },\n                {\n                    \"cartArticleId\": 8,\n                    \"cartId\": 5,\n                    \"articleId\": 1,\n                    \"quantity\": 1,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"Bagremov med 1kg\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"Kratak opis\",\n                        \"description\": \"Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis \",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-21T22:50:46.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"800.00\",\n                                \"createdAt\": \"2020-08-21T23:28:06.000Z\"\n                            },\n                            {\n                                \"articlePriceId\": 2,\n                                \"articleId\": 1,\n                                \"price\": \"700.00\",\n                                \"createdAt\": \"2020-08-21T23:28:17.000Z\"\n                            },\n                            {\n                                \"articlePriceId\": 3,\n                                \"articleId\": 1,\n                                \"price\": \"800.00\",\n                                \"createdAt\": \"2020-08-21T23:28:29.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 6,\n        \"createdAt\": \"2020-11-14T03:29:34.000Z\",\n        \"cartId\": 6,\n        \"status\": \"pending\",\n        \"userId\": 5,\n        \"cart\": {\n            \"cartId\": 6,\n            \"userId\": 5,\n            \"createdAt\": \"2020-11-14T03:29:35.000Z\",\n            \"user\": {\n                \"userId\": 5,\n                \"email\": \"devNenadSpasic@outlook.com\",\n                \"passwordHash\": \"B7DB1AE211627AB1241CAF555B28A562DA2576B9A218844A4B1F0E300E8EA3E83E6CA2EB321897E6BC15B4A1124D3B752F0178AFD32D017E82C49468DFBC713E\",\n                \"forename\": \"Nenad\",\n                \"surename\": \"Spasic\",\n                \"phoneNumber\": \"+381600331088\",\n                \"postalAddress\": \"Mokranjceva 2, 18000 Nis\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 9,\n                    \"cartId\": 6,\n                    \"articleId\": 8,\n                    \"quantity\": 5,\n                    \"article\": {\n                        \"articleId\": 8,\n                        \"name\": \"Pcelarski noz\",\n                        \"categoryId\": 3,\n                        \"excerpt\": \"Pcelarski noz\",\n                        \"description\": \"Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom \",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-11-14T02:43:06.000Z\",\n                        \"category\": {\n                            \"categoryId\": 3,\n                            \"name\": \"Pčelarski pribor\",\n                            \"imagePath\": \"assets/pcelarski-pribor.jpg\",\n                            \"parentCategoryId\": null\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 11,\n                                \"articleId\": 8,\n                                \"price\": \"300.00\",\n                                \"createdAt\": \"2020-11-14T02:43:06.000Z\"\n                            }\n                        ]\n                    }\n                },\n                {\n                    \"cartArticleId\": 10,\n                    \"cartId\": 6,\n                    \"articleId\": 10,\n                    \"quantity\": 1,\n                    \"article\": {\n                        \"articleId\": 10,\n                        \"name\": \"Propolis kapi 10ml\",\n                        \"categoryId\": 8,\n                        \"excerpt\": \"Propolis kapi 10ml\",\n                        \"description\": \"Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml \",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-11-14T02:48:03.000Z\",\n                        \"category\": {\n                            \"categoryId\": 8,\n                            \"name\": \"Propolis\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/propolis.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 13,\n                                \"articleId\": 10,\n                                \"price\": \"100.00\",\n                                \"createdAt\": \"2020-11-14T02:48:03.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 7,\n        \"createdAt\": \"2020-11-14T03:30:39.000Z\",\n        \"cartId\": 7,\n        \"status\": \"pending\",\n        \"userId\": 5,\n        \"cart\": {\n            \"cartId\": 7,\n            \"userId\": 5,\n            \"createdAt\": \"2020-11-14T03:30:39.000Z\",\n            \"user\": {\n                \"userId\": 5,\n                \"email\": \"devNenadSpasic@outlook.com\",\n                \"passwordHash\": \"B7DB1AE211627AB1241CAF555B28A562DA2576B9A218844A4B1F0E300E8EA3E83E6CA2EB321897E6BC15B4A1124D3B752F0178AFD32D017E82C49468DFBC713E\",\n                \"forename\": \"Nenad\",\n                \"surename\": \"Spasic\",\n                \"phoneNumber\": \"+381600331088\",\n                \"postalAddress\": \"Mokranjceva 2, 18000 Nis\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 12,\n                    \"cartId\": 7,\n                    \"articleId\": 7,\n                    \"quantity\": 1,\n                    \"article\": {\n                        \"articleId\": 7,\n                        \"name\": \"Bagremov med\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"medmedmed\",\n                        \"description\": \"medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed \",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-11-14T02:33:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 10,\n                                \"articleId\": 7,\n                                \"price\": \"123.00\",\n                                \"createdAt\": \"2020-11-14T02:33:32.000Z\"\n                            }\n                        ]\n                    }\n                },\n                {\n                    \"cartArticleId\": 13,\n                    \"cartId\": 7,\n                    \"articleId\": 5,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 5,\n                        \"name\": \"Lipov Med 1kg\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"Lipov Med\",\n                        \"description\": \"Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med \",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-11-14T02:23:01.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 8,\n                                \"articleId\": 5,\n                                \"price\": \"900.00\",\n                                \"createdAt\": \"2020-11-14T02:23:01.000Z\"\n                            }\n                        ]\n                    }\n                },\n                {\n                    \"cartArticleId\": 14,\n                    \"cartId\": 7,\n                    \"articleId\": 2,\n                    \"quantity\": 4,\n                    \"article\": {\n                        \"articleId\": 2,\n                        \"name\": \"Livadski Med 1kg\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"Prirodan livaski med\",\n                        \"description\": \"Neki mnogo zajebani description  i mora biti dugacak tekst. bla bla bla okokokokokokokokokokokokoko.........Valjda je sada ok, nije mora jos jebenih karaktera\",\n                        \"status\": \"visible\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-08-24T20:35:05.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 4,\n                                \"articleId\": 2,\n                                \"price\": \"800.00\",\n                                \"createdAt\": \"2020-08-24T20:35:05.000Z\"\n                            },\n                            {\n                                \"articlePriceId\": 5,\n                                \"articleId\": 2,\n                                \"price\": \"900.00\",\n                                \"createdAt\": \"2020-08-27T23:15:08.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 8,\n        \"createdAt\": \"2020-11-15T03:14:40.000Z\",\n        \"cartId\": 8,\n        \"status\": \"pending\",\n        \"userId\": 5,\n        \"cart\": {\n            \"cartId\": 8,\n            \"userId\": 5,\n            \"createdAt\": \"2020-11-15T03:14:40.000Z\",\n            \"user\": {\n                \"userId\": 5,\n                \"email\": \"devNenadSpasic@outlook.com\",\n                \"passwordHash\": \"B7DB1AE211627AB1241CAF555B28A562DA2576B9A218844A4B1F0E300E8EA3E83E6CA2EB321897E6BC15B4A1124D3B752F0178AFD32D017E82C49468DFBC713E\",\n                \"forename\": \"Nenad\",\n                \"surename\": \"Spasic\",\n                \"phoneNumber\": \"+381600331088\",\n                \"postalAddress\": \"Mokranjceva 2, 18000 Nis\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 23,\n                    \"cartId\": 8,\n                    \"articleId\": 15,\n                    \"quantity\": 1,\n                    \"article\": {\n                        \"articleId\": 15,\n                        \"name\": \"Lipo med u sacu 1kg\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"Lipo med u sacu\",\n                        \"description\": \"Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu \",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-11-14T19:18:08.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"Med\",\n                            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 18,\n                                \"articleId\": 15,\n                                \"price\": \"1100.00\",\n                                \"createdAt\": \"2020-11-14T19:18:08.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    }\n]"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "35bfc324-73f9-40f0-a96e-5ab383188012",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "96abc911-21e7-409b-9583-f84f86febd25",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get all categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/category/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"category",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/category/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"category",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2458"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"99a-73bMTF+0y7m3d8g49nDI6Y/HiZQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Sep 2020 01:06:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"categoryId\": 1,\n        \"name\": \"Pčelinji proizvodi\",\n        \"imagePath\": \"assets/pcelinji-proizvodi.jpg\",\n        \"parentCategoryId\": null,\n        \"categories\": [\n            {\n                \"categoryId\": 5,\n                \"name\": \"Med\",\n                \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n                \"parentCategoryId\": 1\n            },\n            {\n                \"categoryId\": 6,\n                \"name\": \"Matična Mleč\",\n                \"imagePath\": \"assets/pcelinji-proizvodi/mlec.jpg\",\n                \"parentCategoryId\": 1\n            },\n            {\n                \"categoryId\": 7,\n                \"name\": \"Polenov prah\",\n                \"imagePath\": \"assets/pcelinji-proizvodi/polenov-prah.jpg\",\n                \"parentCategoryId\": 1\n            },\n            {\n                \"categoryId\": 8,\n                \"name\": \"Propolis\",\n                \"imagePath\": \"assets/pcelinji-proizvodi/propolis.jpg\",\n                \"parentCategoryId\": 1\n            },\n            {\n                \"categoryId\": 9,\n                \"name\": \"Vosak\",\n                \"imagePath\": \"assets/pcelinji-proizvodi/vosak.jpg\",\n                \"parentCategoryId\": 1\n            },\n            {\n                \"categoryId\": 10,\n                \"name\": \"Mešavine\",\n                \"imagePath\": \"assets/pcelinji-proizvodi/mesavine.jpg\",\n                \"parentCategoryId\": 1\n            }\n        ],\n        \"features\": []\n    },\n    {\n        \"categoryId\": 2,\n        \"name\": \"Pčelarska oprema\",\n        \"imagePath\": \"assets/pcelarska-oprema.jpg\",\n        \"parentCategoryId\": null,\n        \"categories\": [],\n        \"features\": []\n    },\n    {\n        \"categoryId\": 3,\n        \"name\": \"Pčelarski pribor\",\n        \"imagePath\": \"assets/pcelarski-pribor.jpg\",\n        \"parentCategoryId\": null,\n        \"categories\": [],\n        \"features\": []\n    },\n    {\n        \"categoryId\": 4,\n        \"name\": \"Lekovi i preparati za pčele\",\n        \"imagePath\": \"assets/lekovi-i-preparati.jpg\",\n        \"parentCategoryId\": null,\n        \"categories\": [],\n        \"features\": []\n    },\n    {\n        \"categoryId\": 5,\n        \"name\": \"Med\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n        \"parentCategoryId\": 1,\n        \"categories\": [],\n        \"features\": [\n            {\n                \"featureId\": 1,\n                \"name\": \"Proizvođač\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 4,\n                \"name\": \"Vrsta\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 5,\n                \"name\": \"Tip\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 6,\n                \"name\": \"Neto težina\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 7,\n                \"name\": \"Ambalaža\",\n                \"categoryId\": 5\n            },\n            {\n                \"featureId\": 8,\n                \"name\": \"Rok upotrebe\",\n                \"categoryId\": 5\n            }\n        ]\n    },\n    {\n        \"categoryId\": 6,\n        \"name\": \"Matična Mleč\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/mlec.jpg\",\n        \"parentCategoryId\": 1,\n        \"categories\": [],\n        \"features\": [\n            {\n                \"featureId\": 12,\n                \"name\": \"Proizvođač\",\n                \"categoryId\": 6\n            }\n        ]\n    },\n    {\n        \"categoryId\": 7,\n        \"name\": \"Polenov prah\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/polenov-prah.jpg\",\n        \"parentCategoryId\": 1,\n        \"categories\": [],\n        \"features\": []\n    },\n    {\n        \"categoryId\": 8,\n        \"name\": \"Propolis\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/propolis.jpg\",\n        \"parentCategoryId\": 1,\n        \"categories\": [],\n        \"features\": []\n    },\n    {\n        \"categoryId\": 9,\n        \"name\": \"Vosak\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/vosak.jpg\",\n        \"parentCategoryId\": 1,\n        \"categories\": [],\n        \"features\": []\n    },\n    {\n        \"categoryId\": 10,\n        \"name\": \"Mešavine\",\n        \"imagePath\": \"assets/pcelinji-proizvodi/mesavine.jpg\",\n        \"parentCategoryId\": 1,\n        \"categories\": [],\n        \"features\": [\n            {\n                \"featureId\": 11,\n                \"name\": \"Sastojci\",\n                \"categoryId\": 10\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get data from a single top level category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/category/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get data from a single top level category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/category/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"category",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "792"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"318-J2kN8OStOCN8RccJremkPXqOvk8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Sep 2020 01:08:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 1,\n    \"name\": \"Pčelinji proizvodi\",\n    \"imagePath\": \"assets/pcelinji-proizvodi.jpg\",\n    \"parentCategoryId\": null,\n    \"categories\": [\n        {\n            \"categoryId\": 5,\n            \"name\": \"Med\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n            \"parentCategoryId\": 1\n        },\n        {\n            \"categoryId\": 6,\n            \"name\": \"Matična Mleč\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/mlec.jpg\",\n            \"parentCategoryId\": 1\n        },\n        {\n            \"categoryId\": 7,\n            \"name\": \"Polenov prah\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/polenov-prah.jpg\",\n            \"parentCategoryId\": 1\n        },\n        {\n            \"categoryId\": 8,\n            \"name\": \"Propolis\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/propolis.jpg\",\n            \"parentCategoryId\": 1\n        },\n        {\n            \"categoryId\": 9,\n            \"name\": \"Vosak\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/vosak.jpg\",\n            \"parentCategoryId\": 1\n        },\n        {\n            \"categoryId\": 10,\n            \"name\": \"Mešavine\",\n            \"imagePath\": \"assets/pcelinji-proizvodi/mesavine.jpg\",\n            \"parentCategoryId\": 1\n        }\n    ],\n    \"features\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "GEt data from a single subcategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/category/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"category",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GEt data from a single subcategory",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/category/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"category",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "426"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1aa-TsOmRokwUPh/Nw+ycOpugL6jqRk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Sep 2020 01:11:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 5,\n    \"name\": \"Med\",\n    \"imagePath\": \"assets/pcelinji-proizvodi/med.jpg\",\n    \"parentCategoryId\": 1,\n    \"categories\": [],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Proizvođač\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Vrsta\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Tip\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Neto težina\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 7,\n            \"name\": \"Ambalaža\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Rok upotrebe\",\n            \"categoryId\": 5\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0d969d00-9984-4e36-a46f-d999a679edb7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3607556a-bc32-467b-bc1c-6278b800cbbf",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMSwiaWRlbnRpdHkiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjA1NDUxNDMyLjk3OCwiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuOCIsImlhdCI6MTYwNTQ1MTEzMn0.zrEt6grKqXP949QhCynID2NsgpdbY5IpFuB5FfJua2s",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9a55c65c-a1a7-4276-880b-49a94f8110e2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "bc673d96-6b5b-4449-b08d-86a188387863",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
