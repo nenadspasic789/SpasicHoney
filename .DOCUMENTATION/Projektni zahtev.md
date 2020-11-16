@@ -1,1 +1,1 @@
-# Aplikacija za online prodaju proizvoda i opreme
+# Aplikacija za online prodaju proizvoda
