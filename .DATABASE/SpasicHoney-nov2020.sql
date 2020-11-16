@@ -1,0 +1,510 @@
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+DROP DATABASE IF EXISTS `application`;
+CREATE DATABASE IF NOT EXISTS `application` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `application`;
+
+DROP TABLE IF EXISTS `administrator`;
+CREATE TABLE IF NOT EXISTS `administrator` (
+  `administrator_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) NOT NULL DEFAULT '0',
+  `password_hash` varchar(128) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`administrator_id`),
+  UNIQUE KEY `uq_administrator_username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `administrator`;
+/*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
+INSERT INTO `administrator` (`administrator_id`, `username`, `password_hash`) VALUES
+	(1, 'nenad', '1D2756A41B6828826847DDB66823B12D1F187B5E7CB400EB410B40DA0F43ECA1A6E287D652EC60B13D8CD77348346C859C7094F0F322904D1C38D72360384355'),
+	(2, 'aleksandar', '123456'),
+	(3, 'nekiuser', '0DCC617B3BEF102B2B55B9C4275C7A8924E825DBC4AEF3B69D40550D865CF67DCF5399A5FFAB74CF4D9C737DF73C3D2BEC03E21AB5B62B1DBB200ADF40AD5C88'),
+	(6, 'nekiusernovi', '394C0C7107BAF4A40B32D5421C0FDF6C53013E30F57D9424E5C6853F92410EAB39D6E0806B706FA9A3D351ACB9C4BC6A811E72E76878AB79D1F0437DB0787306'),
+	(8, 'admin', 'C7AD44CBAD762A5DA0A452F9E854FDC1E0E7A52A38015F23F3EAB1D80B931DD472634DFAC71CD34EBC35D16AB7FB8A90C81F975113D6C7538DC69DD8DE9077EC'),
+	(9, 'admintest', 'B4D0F6240E39E4D452A5CD43DAD70C9C49EFC738C5B96F86E48ACD036B9B2B6BA78566062EF19599E38008AB1BE1AC3BD1C176A5FE807B8AA573BE3D2B925118'),
+	(10, 'admin123', 'BA3253876AED6BC22D4A6FF53D8406C6AD864195ED144AB5C87621B6C233B548BAEAE6956DF346EC8C17F5EA10F35EE3CBC514797ED7DDD3145464E2A0BAB413'),
+	(11, 'administrator', 'CF835DE3D4EA01367C45E412E7A9393A85A4E40AF149ED8C3ED6C37C05B67B27813D7FF8072C1035CEDD19415ADF17128D63186F05F0D656002B0CA1C34F44A0');
+/*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `administrator_token`;
+CREATE TABLE IF NOT EXISTS `administrator_token` (
+  `administrator_token_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `administrator_id` int unsigned NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `token` text NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `is_valid` tinyint unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`administrator_token_id`),
+  KEY `fk_administrator_token_administrator_id` (`administrator_id`),
+  CONSTRAINT `fk_administrator_token_administrator_id` FOREIGN KEY (`administrator_id`) REFERENCES `administrator` (`administrator_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `administrator_token`;
+/*!40000 ALTER TABLE `administrator_token` DISABLE KEYS */;
+INSERT INTO `administrator_token` (`administrator_token_id`, `administrator_id`, `created_at`, `token`, `expires_at`, `is_valid`) VALUES
+	(1, 10, '2020-11-11 22:11:18', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgwNzQ3OC4yMjYsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTI5MDc4fQ.kei2eOpveyRAuhV8yiMP_zS5wSXPIgbw8lBCnmjJs1s', '2020-12-12 21:11:18', 1),
+	(2, 10, '2020-11-11 22:11:57', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgwNzUxNy45MjgsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTI5MTE3fQ.aJoPoQBG9Ig5ASVmFhC9_VvTBvQEUUZcbdb1lqVuhdQ', '2020-12-12 21:11:57', 1),
+	(3, 10, '2020-11-11 22:12:24', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgwNzU0NC45NjEsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTI5MTQ0fQ.XRh45tuyj3aPNm3H1s_BHtAF1b62NtnN8T_jbuqDSMo', '2020-12-12 21:12:24', 1),
+	(4, 10, '2020-11-11 23:30:07', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxMjIwNy4wNywiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTgzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUxMzM4MDd9.WFUh7RtpEZXfCBRz9VSNybxA_diu3nAJSMzLdK5e3wc', '2020-12-12 22:30:07', 1),
+	(5, 10, '2020-11-11 23:30:28', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxMjIyOC44ODIsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTMzODI4fQ.aBGKrWoR-9NTAsQLB33fcNLF4dwvpd8QayhFV1BsGEA', '2020-12-12 22:30:28', 1),
+	(6, 10, '2020-11-11 23:30:36', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxMjIzNi40NjEsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTMzODM2fQ.__d-apeAEAKIHiPvfQOuGRSlfMxLp7HHFQiUf8PPtPU', '2020-12-12 22:30:36', 1),
+	(7, 10, '2020-11-11 23:31:07', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxMjI2Ny41NjksImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTMzODY3fQ.gFKpqe-4cUUMzGungbsTDyzwK0Cct-laiEHgUX0d0X4', '2020-12-12 22:31:07', 1),
+	(8, 10, '2020-11-11 23:31:34', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxMjI5NC43ODYsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTMzODk0fQ.jOURtou7toBXU6pRjkmHWYc-RATcBy3mdkpawBWJzUI', '2020-12-12 22:31:34', 1),
+	(9, 10, '2020-11-11 23:32:12', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxMjMzMi43MTcsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTMzOTMyfQ.JmoZb6uKVETMGw1AoAv_6Nz_4ZPavRIWzS0CAbnUVsY', '2020-12-12 22:32:12', 1),
+	(10, 10, '2020-11-11 23:48:55', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxMzMzNS45MDYsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTM0OTM1fQ.j9UBPuUTns7S63u7IVQzF0IIaEPRQDSpcHKQwlKTrvQ', '2020-12-12 22:48:55', 1),
+	(11, 10, '2020-11-11 23:49:07', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxMzM0Ny4yODMsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTM0OTQ3fQ.x9562sT5iwDIOQVmISRa0KzBg9DSv1zAelZKlRJMDKo', '2020-12-12 22:49:07', 1),
+	(12, 10, '2020-11-12 00:02:10', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxNDEzMC4xMTIsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTM1NzMwfQ.duTIfUaGhN3s9Dj1TBP7ax4u0AE0W7JIwb9-ImiV-kI', '2020-12-12 23:02:10', 1),
+	(13, 10, '2020-11-12 00:04:34', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxNDI3NC4wMzgsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTM1ODc0fQ.2xqkeMwk-IdCB4Cf362Y3a2g8ZkdCkK0Y4BpMJZ8eb0', '2020-12-12 23:04:34', 1),
+	(14, 10, '2020-11-12 00:06:33', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxNDM5My43NDcsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTM1OTkzfQ.K7tiUjQ1okfkvzndrYpoREi0GsCams-lua10nJVJCNs', '2020-12-12 23:06:33', 1),
+	(15, 10, '2020-11-12 00:06:57', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxNDQxNy44MTgsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTM2MDE3fQ.3mhmI1mmbHdbD9zeZfKH8obSM3zKJZeE-ZkcfMM2_xI', '2020-12-12 23:06:57', 1),
+	(16, 10, '2020-11-12 01:05:54', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxNzk1NC4wMSwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTgzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUxMzk1NTR9.AsJ8d7eGI5UyK4lRni6A1PNJbvuYX6XktmsiInICegk', '2020-12-13 00:05:54', 1),
+	(17, 10, '2020-11-12 01:09:39', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxODE3OS43NiwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTgzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUxMzk3Nzl9.c--xshWneCITldXN9LQ7fw4Htnz_oBLN_7nF-YZv2Mw', '2020-12-13 00:09:39', 1),
+	(18, 10, '2020-11-12 01:13:22', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzgxODQwMi4zMTUsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MTQwMDAyfQ.w_irT4DuMXmdbT6DKFQFuAzwJlrYtQcxSYfAaV2Xojc', '2020-12-13 00:13:22', 1),
+	(19, 10, '2020-11-13 00:31:17', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzkwMjI3Ny44NzcsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MjIzODc3fQ.3fobC1RucV3z5jvrU90GUtSrZLTLsks8pf1XGVj1kBE', '2020-12-13 23:31:17', 1),
+	(20, 10, '2020-11-13 00:31:57', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzkwMjMxNy40MzcsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MjIzOTE3fQ.zGeFADClT8sjbAYlpY-cJGt5iH_bQAEIRBirVz8E9MI', '2020-12-13 23:31:57', 1),
+	(21, 10, '2020-11-13 00:41:42', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzkwMjkwMi4yNjMsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE4MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MjI0NTAyfQ.m55HXdpwOiKwKApLxS2ur7bmaroBSMQ4P8D_DhtyNh4', '2020-12-13 23:41:42', 1),
+	(22, 10, '2020-11-13 17:49:14', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzk2NDU1NC43ODYsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1Mjg2MTU0fQ.QYwHGOF9fNMmTm7EGmM0Ly8J-AJk-uz8nCjWcrpEE-0', '2020-12-14 16:49:14', 1),
+	(23, 10, '2020-11-13 19:06:50', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwNzk2OTIxMC41NSwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUyOTA4MTB9._LAqwx53e_2jMCWs-VvlJrYyOIGVOrIJhD6iFd6jMqA', '2020-12-14 18:06:50', 1),
+	(24, 11, '2020-11-13 23:07:14', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMSwiaWRlbnRpdHkiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjA3OTgzNjM0LjY2MSwiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuOCIsImlhdCI6MTYwNTMwNTIzNH0.-YLqCnOCwWN9zAAG6bRrts6DJ2lU5GSsG1Iv7USyq_4', '2020-12-14 22:07:14', 1),
+	(25, 11, '2020-11-14 03:41:58', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMSwiaWRlbnRpdHkiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjA4MDAwMTE4LjIzMiwiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuOCIsImlhdCI6MTYwNTMyMTcxOH0.vAkA5duvgVW8kd3MkgGZTeYhGHXy5Hq2E8F88js591U', '2020-12-15 02:41:58', 1),
+	(26, 11, '2020-11-14 03:51:37', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMSwiaWRlbnRpdHkiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjA4MDAwNjk3LjQ4MywiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuOCIsImlhdCI6MTYwNTMyMjI5N30.3pxhNavvcGtfMT3L-LllW_P4BP8KYiigLOu_iyoCOTc', '2020-12-15 02:51:37', 1),
+	(27, 11, '2020-11-14 04:11:48', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMSwiaWRlbnRpdHkiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjA4MDAxOTA4LjUxNCwiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuOCIsImlhdCI6MTYwNTMyMzUwOH0.6MDT0PueR-OleR1XsCqwURov_FZWJOskLotfIY4qlg0', '2020-12-15 03:11:48', 1),
+	(28, 10, '2020-11-14 19:46:15', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODA1Nzk3NS4yMjYsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1Mzc5NTc1fQ.yjy94_TZGg-aXu0bwNLw3ngbPwCle606tZFrQ8n7pnc', '2020-12-15 18:46:15', 1),
+	(29, 11, '2020-11-14 19:47:15', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMSwiaWRlbnRpdHkiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjA4MDU4MDM1LjE1NywiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuOCIsImlhdCI6MTYwNTM3OTYzNX0.BNHZINRY1jnZQLuTGYM39NHH-69aKAdsX3v2KRgxsWM', '2020-12-15 18:47:15', 1),
+	(30, 10, '2020-11-14 20:24:32', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODA2MDI3Mi4zMTgsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1MzgxODcyfQ.y1ipfTveTujAVNjBuG_8EW3jZo9_dWWZpltDPHLEeYM', '2020-12-15 19:24:32', 1),
+	(31, 10, '2020-11-14 21:02:59', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODA2MjU3OS40NjksImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1Mzg0MTc5fQ.dNTlSioOSZIslYv25YymoMVkd9iF1-sA7auCrHWFq4E', '2020-12-15 20:02:59', 1),
+	(32, 11, '2020-11-14 22:14:03', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMSwiaWRlbnRpdHkiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjA4MDY2ODQzLjUxNywiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuOCIsImlhdCI6MTYwNTM4ODQ0M30.avFTJ5HkD0VP_pPNFeFu_GFif7UlRLev-Z_183Q1zTM', '2020-12-15 21:14:03', 1),
+	(33, 10, '2020-11-15 00:32:14', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODA3NTEzNC44NiwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUzOTY3MzR9.dTTVhk3OiBelq_fHYh9pX8XTGusLyDUwFEFQVe5o3uM', '2020-12-15 23:32:14', 1),
+	(34, 10, '2020-11-15 02:14:33', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODA4MTI3My4xMDUsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDAyODczfQ._91SVAeLbWbuktg89VEB6y365YcHyCHvpoV2LLX03ms', '2020-12-16 01:14:33', 1),
+	(35, 10, '2020-11-15 03:13:46', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODA4NDgyNi40NDIsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDA2NDI2fQ.zgQc8UkgMSxjNkQjT56litxFnrL-PCNzhxJMpGljLVY', '2020-12-16 02:13:46', 1),
+	(36, 11, '2020-11-15 15:38:52', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMSwiaWRlbnRpdHkiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNjA4MTI5NTMyLjk4LCJpcCI6Ijo6MSIsInVhIjoiUG9zdG1hblJ1bnRpbWUvNy4yNi44IiwiaWF0IjoxNjA1NDUxMTMyfQ.E8pKfqOgHcNiKU1aLjcVBXSztX3kLThKzAJYi4gyAj0', '2020-12-16 14:38:52', 1),
+	(37, 10, '2020-11-15 16:04:19', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODEzMTA1OS42NSwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0NTI2NTl9.fE4jWoMjz_s83VgwD1yciH7dSkl4p_9KmEy0OJeLG6I', '2020-12-16 15:04:19', 1),
+	(38, 10, '2020-11-15 18:05:37', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODEzODMzNy45NjMsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDU5OTM3fQ.JgOQS4X5lsNvgNN9R7ywQP6FOVYAa6paep9vysvfLzk', '2020-12-16 17:05:37', 1),
+	(39, 10, '2020-11-15 18:13:35', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODEzODgxNS4yMjksImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDYwNDE1fQ.ZyXrI-P8MQtzGPjSn3fO00PnOKefaXbvzYypc8H6oXo', '2020-12-16 17:13:35', 1),
+	(40, 10, '2020-11-15 18:15:57', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODEzODk1Ny42MTEsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDYwNTU3fQ.NC_jaS9_g85NCNUqLtedOpZOV5FAWRq347LBTtFpkDI', '2020-12-16 17:15:57', 1),
+	(41, 10, '2020-11-15 21:51:03', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1MTg2My44MDcsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDczNDYzfQ.Kq7BytH4mklogo2QBKMKiK5Vs3WXicRS4C0I7KQrGMk', '2020-12-16 20:51:03', 1),
+	(42, 10, '2020-11-15 21:54:39', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1MjA3OS4zNTUsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDczNjc5fQ.tAV8RvdjZ4FrfH6IpNL6xjDa0zFdhvt9qkn3M0WOtcA', '2020-12-16 20:54:39', 1),
+	(43, 10, '2020-11-15 21:56:06', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1MjE2Ni44ODcsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDczNzY2fQ.ynU8fPv15OfWf8znmJKCVMvfMM2w5tY_E3n5A-ODIBU', '2020-12-16 20:56:06', 1),
+	(44, 10, '2020-11-15 21:58:21', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1MjMwMS4xMiwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0NzM5MDF9.DUp2m9zBom9CuepsyMZydEkESqL2ylanZJrQoOLJmjk', '2020-12-16 20:58:21', 1),
+	(45, 10, '2020-11-15 22:01:17', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1MjQ3Ny4yOTQsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDc0MDc3fQ.NCWbdGoVVR0yiWr0h9OsrO_DK280CXcZNpxAsnobVBU', '2020-12-16 21:01:17', 1),
+	(46, 10, '2020-11-15 23:35:12', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1ODExMi4wMzEsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDc5NzEyfQ.jo9oLgdFFYpR9s8yj4zEfTmo9I1Fe2PYuDSDSLyKQCM', '2020-12-16 22:35:12', 1),
+	(47, 10, '2020-11-15 23:38:11', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1ODI5MS4yNDksImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDc5ODkxfQ.1CydKArKtByAW3_lKZUa5oWOD9iP0o6dgkVtChYNQWw', '2020-12-16 22:38:11', 1),
+	(48, 10, '2020-11-15 23:38:47', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1ODMyNy4zMTQsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDc5OTI3fQ.T20p_nD9hoTViexptLdAsgpOVX2W2m-JHqtUMZotG6g', '2020-12-16 22:38:47', 1),
+	(49, 10, '2020-11-15 23:39:45', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1ODM4NS45NTMsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDc5OTg1fQ.tVU9PABtAHxX3MR_vcEI_8iO9tDl5EPR_8BlTUluRSk', '2020-12-16 22:39:45', 1),
+	(50, 10, '2020-11-15 23:40:15', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1ODQxNS41MzUsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDgwMDE1fQ.RIvxNaZ2G3mlt-bAbpm73b91bRN_RpAraA9Wan34ReE', '2020-12-16 22:40:15', 1),
+	(51, 10, '2020-11-15 23:46:45', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1ODgwNS45MDIsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDgwNDA1fQ.St_HCP1J3vVe0bmBIvglXUk_cdbRd8CVtnVTXz1msNE', '2020-12-16 22:46:45', 1),
+	(52, 10, '2020-11-16 00:01:04', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1OTY2NC42MTQsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDgxMjY0fQ.bmqL73Re49HS2hykFyUqiU3lEJfAZtiVfjbB3FypPd8', '2020-12-16 23:01:04', 1),
+	(53, 10, '2020-11-16 00:01:51', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1OTcxMS4yMzgsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDgxMzExfQ.8Pzy41bFPgdUjfAYXr16chccpGEutR554v6WjNW3j2c', '2020-12-16 23:01:51', 1),
+	(54, 10, '2020-11-16 00:02:41', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1OTc2MS4yMzksImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDgxMzYxfQ.GrdQI3RRa2YfLoIUGkGbigJcB5otyCwIojUtGqURbPE', '2020-12-16 23:02:41', 1),
+	(55, 10, '2020-11-16 00:06:02', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE1OTk2Mi45MjQsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDgxNTYyfQ.SWLC_kUk0-3h_V6a8cH8L6sJHRjiJBsfIblKmaL92-s', '2020-12-16 23:06:02', 1),
+	(56, 10, '2020-11-16 00:08:09', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2MDA4OS41OTEsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDgxNjg5fQ.qpUNX0MrOzg3G8muvvUoa4pVMDufnDUwywUbITSgfyA', '2020-12-16 23:08:09', 1),
+	(57, 10, '2020-11-16 00:14:07', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2MDQ0Ny43MTEsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDgyMDQ3fQ.rmgkv0PGxwFGP1yG4Ikycp_tUW-nV1Ux8TomwabtVA0', '2020-12-16 23:14:07', 1),
+	(58, 10, '2020-11-16 00:14:11', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2MDQ1MS42MDIsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDgyMDUxfQ.M_TBtxrqkmD49Jaz7-HS1kK-Pj1Y7Oj8nC9W--4fHXM', '2020-12-16 23:14:11', 1),
+	(59, 10, '2020-11-16 00:29:58', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2MTM5OC42NTksImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDgyOTk4fQ.zNae06Net49dr9tUQydfkDHrJ2LTf3vMC4uc3IocvRU', '2020-12-16 23:29:58', 1),
+	(60, 10, '2020-11-16 01:43:47', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2NTgyNy42NzcsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg3NDI3fQ.88-7sUB5sEd274sRP19gM_IDkYMONq-5KTSnk8W8Yo0', '2020-12-17 00:43:47', 1),
+	(61, 10, '2020-11-16 01:50:39', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2NjIzOS4yNDIsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg3ODM5fQ.Fs4et89wXUgJc4eLiZMxHxIJx4e3gNElpQD-ubRSEmQ', '2020-12-17 00:50:39', 1),
+	(62, 10, '2020-11-16 01:51:42', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2NjMwMi45MjgsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg3OTAyfQ.RkGIdWb4HzbmE84_6ZM22zD-6NV1D8gWwGQPkyorcSk', '2020-12-17 00:51:42', 1),
+	(63, 10, '2020-11-16 01:51:53', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2NjMxMy41MTEsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg3OTEzfQ.v0GtSdlr5_SrZLFqE2KFieGfMBMWqAOl4cOylhfvmlc', '2020-12-17 00:51:53', 1),
+	(64, 10, '2020-11-16 01:52:07', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2NjMyNy4xODUsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg3OTI3fQ.jcS-68xWLNG2QxNynJcn3qJ09JB4w20OXOopFdp_Eqk', '2020-12-17 00:52:07', 1),
+	(65, 10, '2020-11-16 01:59:57', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2Njc5Ny43NjEsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg4Mzk3fQ.yFM_yl_GtQbFJZtx3ztbGa-lWuSuRsRtMIjrTsDYVwM', '2020-12-17 00:59:57', 1),
+	(66, 10, '2020-11-16 02:00:10', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2NjgxMC4xMjksImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg4NDEwfQ.y4Tq92PFJPqWHogHzpxYCjjDdEKzAkiuIjS6xQi089Y', '2020-12-17 01:00:10', 1),
+	(67, 10, '2020-11-16 02:01:18', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2Njg3OC4wMDIsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg4NDc4fQ.2tRAHdmoPtoai5amPK8Nu0VOKt7DCWGuQ7I2ZfWK2CQ', '2020-12-17 01:01:18', 1),
+	(68, 10, '2020-11-16 02:04:10', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2NzA1MC40MDEsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg4NjUwfQ.Xxe0RaMhhEIZw53RrSX75fTZ2usYwDrKV2DAhkhQwrE', '2020-12-17 01:04:10', 1),
+	(69, 10, '2020-11-16 02:06:49', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2NzIwOS40ODEsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg4ODA5fQ.938iJ45lnNFKkk1x41Q74lrcrW01jGj8fv9tOlnQU0E', '2020-12-17 01:06:49', 1),
+	(70, 10, '2020-11-16 02:08:55', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2NzMzNS4zMzMsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg4OTM1fQ.TD_gpcA4bENPd6wZUCLmzjQzNbAZCTZT1Zw04OXojYc', '2020-12-17 01:08:55', 1),
+	(71, 10, '2020-11-16 02:10:13', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2NzQxMy4wMjMsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg5MDEzfQ.-JuHjM3igz4urJgjPK251YjPxTM0-HAUvapPzN28SM8', '2020-12-17 01:10:13', 1),
+	(72, 10, '2020-11-16 02:12:48', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjoxMCwiaWRlbnRpdHkiOiJhZG1pbjEyMyIsImV4cCI6MTYwODE2NzU2OC41ODcsImlwIjoiOjoxIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODYuMC40MjQwLjE5MyBTYWZhcmkvNTM3LjM2IiwiaWF0IjoxNjA1NDg5MTY4fQ.9ZD_5-9Db-4CVZhHcPj_tCvbJVHHrIycjtzGYVT8i78', '2020-12-17 01:12:48', 1);
+/*!40000 ALTER TABLE `administrator_token` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE IF NOT EXISTS `article` (
+  `article_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL DEFAULT '0',
+  `category_id` int unsigned NOT NULL DEFAULT '0',
+  `excerpt` varchar(255) NOT NULL DEFAULT '0',
+  `description` text NOT NULL,
+  `status` enum('available','visible','hidden') NOT NULL DEFAULT 'available',
+  `is_promoted` tinyint unsigned NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`article_id`),
+  KEY `fk_article_category_id` (`category_id`),
+  CONSTRAINT `fk_article_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `article`;
+/*!40000 ALTER TABLE `article` DISABLE KEYS */;
+INSERT INTO `article` (`article_id`, `name`, `category_id`, `excerpt`, `description`, `status`, `is_promoted`, `created_at`) VALUES
+	(1, 'Bagremov med 1kg', 5, 'Kratak opis', 'Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis Detaljan opis ', 'available', 0, '2020-08-22 00:50:46'),
+	(2, 'Livadski Med 1kg', 5, 'Prirodan livaski med', 'Neki mnogo zajebani description  i mora biti dugacak tekst. bla bla bla okokokokokokokokokokokokoko.........Valjda je sada ok, nije mora jos jebenih karaktera', 'visible', 1, '2020-08-24 22:35:05'),
+	(3, 'Livadski Medovi', 5, 'Prirodan livadski med', 'Detaljan opis.............................................................................................................hjhhjhjhjh', 'available', 1, '2020-11-10 02:10:30'),
+	(4, 'Sumski Med 1kg', 5, 'Prirodan sumski med', 'Prirodan sumski med... Prirodan sumski med\nPrirodan sumski med... Prirodan sumski med\nPrirodan sumski med... Prirodan sumski med\nPrirodan sumski med... Prirodan sumski med\nPrirodan sumski med... Prirodan sumski med\nPrirodan sumski med... Prirodan sumski med\nPrirodan sumski med... Prirodan sumski med\nPrirodan sumski med... Prirodan sumski med', 'available', 1, '2020-11-14 02:59:14'),
+	(5, 'Lipov Med 1kg', 5, 'Lipov Med', 'Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med Lipov Med ', 'available', 0, '2020-11-14 03:23:01'),
+	(6, 'Bagremov med', 5, 'medmedmed', 'medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed ', 'available', 0, '2020-11-14 03:32:46'),
+	(7, 'Bagremov med', 5, 'medmedmed', 'medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed medmedmed ', 'available', 0, '2020-11-14 03:33:32'),
+	(8, 'Pcelarski noz', 3, 'Pcelarski noz', 'Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom Pcelarski noz najbolji na svetu tom ', 'available', 0, '2020-11-14 03:43:06'),
+	(9, 'Amitraz', 4, 'Amitraz', 'Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz Amitraz ', 'available', 0, '2020-11-14 03:47:23'),
+	(10, 'Propolis kapi 10ml', 8, 'Propolis kapi 10ml', 'Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml Propolis kapi 10ml ', 'available', 0, '2020-11-14 03:48:03'),
+	(11, 'Polenov prah 100g', 7, 'Polenov prah cvetni prah', 'Polenov prah cvetni prah Polenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prahPolenov prah cvetni prah', 'available', 0, '2020-11-14 04:09:54'),
+	(12, 'Polenov prah - mleveni 100g', 7, 'Polenov prah - mleveni 100g', 'Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g Polenov prah - mleveni 100g ', 'available', 0, '2020-11-14 04:12:53'),
+	(13, 'Polenov prah Mleveni 200g', 7, 'Polenov prah Mleveni', 'Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni Polenov prah Mleveni ', 'available', 0, '2020-11-14 19:48:59'),
+	(14, 'Dimilica', 3, 'Dimilica', 'Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica Dimilica ', 'available', 1, '2020-11-14 20:16:43'),
+	(15, 'Lipo med u sacu 1kg', 5, 'Lipo med u sacu', 'Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu Lipo med u sacu ', 'available', 0, '2020-11-14 20:18:08'),
+	(16, 'Neki novi med', 5, 'Neki novi med', 'Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med Neki novi med ', 'available', 0, '2020-11-14 20:19:16'),
+	(17, 'Opet med', 5, 'Opet med', 'Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med Opet med ', 'available', 0, '2020-11-14 20:19:59'),
+	(18, 'Med od Zalfije', 1, 'Med od Zalfije', 'Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije Med od Zalfije  Med od Zalfije ', 'available', 0, '2020-11-14 21:04:06');
+/*!40000 ALTER TABLE `article` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `article_feature`;
+CREATE TABLE IF NOT EXISTS `article_feature` (
+  `article_feature_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `article_id` int unsigned NOT NULL DEFAULT '0',
+  `feature_id` int unsigned NOT NULL DEFAULT '0',
+  `value` varchar(255) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`article_feature_id`),
+  UNIQUE KEY `uq_article_feature_article_id_feature_id` (`article_id`,`feature_id`),
+  KEY `fk_article_feature_feature_id` (`feature_id`),
+  CONSTRAINT `fk_article_feature_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_article_feature_feature_id` FOREIGN KEY (`feature_id`) REFERENCES `feature` (`feature_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `article_feature`;
+/*!40000 ALTER TABLE `article_feature` DISABLE KEYS */;
+INSERT INTO `article_feature` (`article_feature_id`, `article_id`, `feature_id`, `value`) VALUES
+	(25, 2, 1, 'SpasicHoney firma mala'),
+	(26, 2, 4, 'Livada'),
+	(27, 2, 5, 'Centrifugirani'),
+	(28, 2, 6, '3 kg'),
+	(29, 2, 7, 'Plastika'),
+	(30, 2, 8, '12 meseci'),
+	(37, 5, 1, 'SpasicHoney'),
+	(38, 5, 4, 'Lipov'),
+	(39, 5, 5, 'Vrcani'),
+	(40, 5, 6, '1 kg'),
+	(41, 5, 7, 'Plastika'),
+	(42, 5, 8, 'Neogranicen'),
+	(43, 6, 1, 'SpasicHoney'),
+	(44, 7, 1, 'SpasicHoney'),
+	(45, 15, 1, 'Spasic Honey'),
+	(46, 15, 4, 'Lipov'),
+	(47, 15, 5, 'U sacu'),
+	(48, 15, 6, '1 kg'),
+	(49, 15, 7, 'Staklo'),
+	(50, 15, 8, 'Neogranicen'),
+	(51, 16, 1, 'Medna Kuca Spasic'),
+	(52, 17, 1, 'Spasic Honey'),
+	(58, 4, 1, 'Medna Kuca Spasic'),
+	(59, 4, 4, 'Sumski'),
+	(60, 4, 5, 'Vrcani'),
+	(61, 4, 6, '1 kg'),
+	(62, 4, 7, 'Staklo'),
+	(63, 3, 1, 'Medna Kuća Spasić'),
+	(64, 3, 4, 'Livadski'),
+	(65, 3, 5, 'Vrcani'),
+	(66, 3, 6, '1 kg'),
+	(67, 3, 7, 'Staklo'),
+	(68, 3, 8, 'Rok upotrebe'),
+	(69, 1, 1, 'Medna Kuća Spasić'),
+	(70, 1, 4, 'Bagremov'),
+	(71, 1, 5, 'Vrcani'),
+	(72, 1, 6, '1 kg'),
+	(73, 1, 7, 'Staklo'),
+	(74, 1, 8, 'Neograničen');
+/*!40000 ALTER TABLE `article_feature` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `article_price`;
+CREATE TABLE IF NOT EXISTS `article_price` (
+  `article_price_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `article_id` int unsigned NOT NULL DEFAULT '0',
+  `price` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`article_price_id`),
+  KEY `fk_article_price_article_id` (`article_id`),
+  CONSTRAINT `fk_article_price_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `article_price`;
+/*!40000 ALTER TABLE `article_price` DISABLE KEYS */;
+INSERT INTO `article_price` (`article_price_id`, `article_id`, `price`, `created_at`) VALUES
+	(1, 1, 800.00, '2020-08-22 01:28:06'),
+	(2, 1, 700.00, '2020-08-22 01:28:17'),
+	(3, 1, 800.00, '2020-08-22 01:28:29'),
+	(4, 2, 800.00, '2020-08-24 22:35:05'),
+	(5, 2, 900.00, '2020-08-28 01:15:08'),
+	(6, 3, 800.00, '2020-11-10 02:10:30'),
+	(7, 4, 1000.00, '2020-11-14 02:59:15'),
+	(8, 5, 900.00, '2020-11-14 03:23:01'),
+	(9, 6, 123.00, '2020-11-14 03:32:46'),
+	(10, 7, 123.00, '2020-11-14 03:33:32'),
+	(11, 8, 300.00, '2020-11-14 03:43:06'),
+	(12, 9, 230.00, '2020-11-14 03:47:23'),
+	(13, 10, 100.00, '2020-11-14 03:48:03'),
+	(14, 11, 250.00, '2020-11-14 04:09:54'),
+	(15, 12, 250.00, '2020-11-14 04:12:53'),
+	(16, 13, 500.00, '2020-11-14 19:48:59'),
+	(17, 14, 890.00, '2020-11-14 20:16:44'),
+	(18, 15, 1100.00, '2020-11-14 20:18:08'),
+	(19, 16, 2222.00, '2020-11-14 20:19:16'),
+	(20, 17, 1000.00, '2020-11-14 20:19:59'),
+	(21, 18, 1200.00, '2020-11-14 21:04:06'),
+	(22, 4, 1100.00, '2020-11-14 23:10:55');
+/*!40000 ALTER TABLE `article_price` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `cart`;
+CREATE TABLE IF NOT EXISTS `cart` (
+  `cart_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int unsigned NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`cart_id`),
+  KEY `fk_cart_user_id` (`user_id`),
+  CONSTRAINT `fk_cart_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `cart`;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` (`cart_id`, `user_id`, `created_at`) VALUES
+	(2, 5, '2020-11-10 03:30:13'),
+	(3, 5, '2020-11-10 04:03:30'),
+	(4, 5, '2020-11-10 04:05:21'),
+	(5, 5, '2020-11-14 03:01:45'),
+	(6, 5, '2020-11-14 04:29:35'),
+	(7, 5, '2020-11-14 04:30:39'),
+	(8, 5, '2020-11-15 04:14:40'),
+	(9, 5, '2020-11-15 18:46:23'),
+	(10, 5, '2020-11-15 22:00:48'),
+	(11, 5, '2020-11-15 22:00:54');
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `cart_article`;
+CREATE TABLE IF NOT EXISTS `cart_article` (
+  `cart_article_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `cart_id` int unsigned NOT NULL DEFAULT '0',
+  `article_id` int unsigned NOT NULL DEFAULT '0',
+  `quantity` int unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cart_article_id`),
+  UNIQUE KEY `uq_cart_article_cart_id_article_id` (`cart_id`,`article_id`),
+  KEY `fk_cart_article_article_id` (`article_id`),
+  CONSTRAINT `fk_cart_article_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_cart_article_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `cart_article`;
+/*!40000 ALTER TABLE `cart_article` DISABLE KEYS */;
+INSERT INTO `cart_article` (`cart_article_id`, `cart_id`, `article_id`, `quantity`) VALUES
+	(1, 2, 2, 11),
+	(2, 3, 3, 1),
+	(3, 3, 2, 4),
+	(4, 4, 2, 6),
+	(5, 5, 4, 3),
+	(6, 5, 2, 2),
+	(7, 5, 3, 4),
+	(8, 5, 1, 1),
+	(9, 6, 8, 5),
+	(10, 6, 10, 1),
+	(12, 7, 7, 1),
+	(13, 7, 5, 3),
+	(14, 7, 2, 4),
+	(23, 8, 15, 1),
+	(24, 9, 6, 1),
+	(25, 9, 4, 4),
+	(26, 10, 10, 1);
+/*!40000 ALTER TABLE `cart_article` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE IF NOT EXISTS `category` (
+  `category_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL DEFAULT '0',
+  `image_path` varchar(128) NOT NULL DEFAULT '0',
+  `parent__category_id` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`category_id`),
+  UNIQUE KEY `uq_category_name` (`name`),
+  UNIQUE KEY `uq_category_image_path` (`image_path`),
+  KEY `fk_category_parent__category_id` (`parent__category_id`),
+  CONSTRAINT `fk_category_parent__category_id` FOREIGN KEY (`parent__category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `category`;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` (`category_id`, `name`, `image_path`, `parent__category_id`) VALUES
+	(1, 'Pčelinji proizvodi', 'assets/pcelinji-proizvodi.jpg', NULL),
+	(2, 'Pčelarska oprema', 'assets/pcelarska-oprema.jpg', NULL),
+	(3, 'Pčelarski pribor', 'assets/pcelarski-pribor.jpg', NULL),
+	(4, 'Lekovi i preparati za pčele', 'assets/lekovi-i-preparati.jpg', NULL),
+	(5, 'Med', 'assets/pcelinji-proizvodi/med.jpg', 1),
+	(6, 'Matična Mleč', 'assets/pcelinji-proizvodi/mlec.jpg', 1),
+	(7, 'Polenov prah', 'assets/pcelinji-proizvodi/polenov-prah.jpg', 1),
+	(8, 'Propolis', 'assets/pcelinji-proizvodi/propolis.jpg', 1),
+	(9, 'Vosak', 'assets/pcelinji-proizvodi/vosak.jpg', 1),
+	(10, 'Mešavine', 'assets/pcelinji-proizvodi/mesavine.jpg', 1),
+	(11, 'Perga', 'assets/pcelinji-proizvodi/perga.jpg', 1);
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `feature`;
+CREATE TABLE IF NOT EXISTS `feature` (
+  `feature_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL DEFAULT '',
+  `category_id` int unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`feature_id`),
+  UNIQUE KEY `uq_feature_name_category_id` (`name`,`category_id`),
+  KEY `fk_feature_category_id` (`category_id`),
+  CONSTRAINT `fk_feature_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `feature`;
+/*!40000 ALTER TABLE `feature` DISABLE KEYS */;
+INSERT INTO `feature` (`feature_id`, `name`, `category_id`) VALUES
+	(7, 'Ambalaža', 5),
+	(6, 'Neto tezina', 5),
+	(15, 'Neto tezina', 6),
+	(13, 'Pakuje', 6),
+	(1, 'Proizvođač', 5),
+	(12, 'Proizvođač', 6),
+	(8, 'Rok upotrebe', 5),
+	(14, 'Rok upotrebe', 6),
+	(11, 'Sastojci', 10),
+	(5, 'Tip', 5),
+	(4, 'Vrsta', 5);
+/*!40000 ALTER TABLE `feature` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE IF NOT EXISTS `order` (
+  `order_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cart_id` int unsigned NOT NULL DEFAULT '0',
+  `status` enum('rejected','accepted','shipped','pending') NOT NULL DEFAULT 'pending',
+  `user_id` int unsigned NOT NULL,
+  PRIMARY KEY (`order_id`),
+  UNIQUE KEY `uq_order_cart_id` (`cart_id`),
+  KEY `fk_order_user_id` (`user_id`),
+  CONSTRAINT `fk_order_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `order`;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` (`order_id`, `created_at`, `cart_id`, `status`, `user_id`) VALUES
+	(2, '2020-11-10 03:30:13', 2, 'shipped', 5),
+	(3, '2020-11-10 04:03:30', 3, 'shipped', 5),
+	(4, '2020-11-10 04:05:21', 4, 'pending', 5),
+	(5, '2020-11-14 03:01:45', 5, 'accepted', 5),
+	(6, '2020-11-14 04:29:34', 6, 'rejected', 5),
+	(7, '2020-11-14 04:30:39', 7, 'pending', 5),
+	(8, '2020-11-15 04:14:40', 8, 'accepted', 5),
+	(9, '2020-11-15 18:46:23', 9, 'pending', 5),
+	(10, '2020-11-15 22:00:47', 10, 'rejected', 5);
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `photo`;
+CREATE TABLE IF NOT EXISTS `photo` (
+  `photo_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `article_id` int unsigned NOT NULL DEFAULT '0',
+  `image_path` varchar(128) NOT NULL DEFAULT '0',
+  UNIQUE KEY `photo_id` (`photo_id`),
+  UNIQUE KEY `uq_photo_image_path` (`image_path`),
+  KEY `fk_photo_article_id` (`article_id`),
+  CONSTRAINT `fk_photo_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `photo`;
+/*!40000 ALTER TABLE `photo` DISABLE KEYS */;
+INSERT INTO `photo` (`photo_id`, `article_id`, `image_path`) VALUES
+	(6, 1, '2020827-7372292839-bagremov-med.jpg'),
+	(8, 2, '20201113-6332522328-honey-shop_1.jpg'),
+	(9, 3, '20201113-6464321215-honey-shop_4.jpg'),
+	(10, 4, '20201114-5076936787-honey-shop_4.jpg'),
+	(11, 5, '20201114-4853297732-20157978_10214073214733732_5694041586889720158_o.jpg'),
+	(12, 7, '20201114-1229671152-20157978_10214073214733732_5694041586889720158_o.jpg'),
+	(13, 6, '20201114-4841919433-honey-shop_4.jpg'),
+	(14, 8, '20201114-9272582474-honey-shop_4.jpg'),
+	(15, 9, '20201114-2898297807-1.jpg'),
+	(16, 10, '20201114-0136136596-honey-shop_4.jpg'),
+	(17, 11, '20201114-7342412269-honey-shop_4.jpg'),
+	(18, 12, '20201114-3887528445-honey-shop_4.jpg'),
+	(20, 14, '20201114-2408713457-dimilica-prohromska-100_557.jpg'),
+	(21, 15, '20201114-4312086923-honey-shop_1.jpg'),
+	(22, 16, '20201114-1060143571-honey-shop_4.jpg'),
+	(23, 17, '20201114-5496697577-honey-shop_1.jpg'),
+	(24, 18, '20201114-2284698522-honey-shop_4.jpg'),
+	(28, 13, '20201115-0424151862-20157978_10214073214733732_5694041586889720158_o.jpg'),
+	(31, 1, '20201115-7036721191-20157978_10214073214733732_5694041586889720158_o.jpg');
+/*!40000 ALTER TABLE `photo` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL DEFAULT '0',
+  `password_hash` varchar(128) NOT NULL DEFAULT '0',
+  `forename` varchar(64) NOT NULL DEFAULT '0',
+  `surename` varchar(64) NOT NULL DEFAULT '0',
+  `phone_number` varchar(24) NOT NULL DEFAULT '0',
+  `postal_address` tinytext NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `uq_user_email` (`email`),
+  UNIQUE KEY `uq_user_phone_number` (`phone_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `user`;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`user_id`, `email`, `password_hash`, `forename`, `surename`, `phone_number`, `postal_address`) VALUES
+	(1, 'neki@mail.rs', '2A845B8D6C928B4A5D55F12180D50265077E242260DEF2DEBA28E1AE49D5FB57CD5B06E95A405E72C9AF54DEE133FA80008056B658908FA1DE09156CCBC5371B', 'Ime', '0', '+38160666544', 'Neka adresa bb, 18000 Nis'),
+	(3, 'nekinovi@mail.rs', '621AD81CDB3433D5D7480BD076CFEFC0776BE4E55AE369F182B69D3F5A15125E6806DB72158B4C1201130F9EBB74A3C20180385FD71DC8FC052AD4BAD62A6D02', 'Imence', 'Prezimetina', '+38160666124', 'Neka adresa bb, 18000 Nis'),
+	(5, 'devNenadSpasic@outlook.com', 'B7DB1AE211627AB1241CAF555B28A562DA2576B9A218844A4B1F0E300E8EA3E83E6CA2EB321897E6BC15B4A1124D3B752F0178AFD32D017E82C49468DFBC713E', 'Nenad', 'Spasic', '+381600331088', 'Mokranjceva 2, 18000 Nis');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `user_token`;
+CREATE TABLE IF NOT EXISTS `user_token` (
+  `user_token_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int unsigned NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `token` text NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `is_valid` tinyint unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`user_token_id`),
+  KEY `fk_user_token_user_id` (`user_id`),
+  CONSTRAINT `fk_user_token_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `user_token`;
+/*!40000 ALTER TABLE `user_token` DISABLE KEYS */;
+INSERT INTO `user_token` (`user_token_id`, `user_id`, `created_at`, `token`, `expires_at`, `is_valid`) VALUES
+	(1, 5, '2020-11-02 15:22:05', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3MDA1MzI1LjE4NiwiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuNSIsImlhdCI6MTYwNDMyNjkyNX0.v1UTScBPMG1BryjDIgKHChlfCEj6zO-0uhF_1rAnAjA', '2020-12-03 14:22:05', 1),
+	(2, 5, '2020-11-02 15:30:06', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3MDA1ODA2LjY1NiwiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuNSIsImlhdCI6MTYwNDMyNzQwNn0.O93m6v2bZiE4E9qa5zNfb3kCXuA0lODWTlo9vava69I', '2020-12-03 14:30:06', 1),
+	(3, 5, '2020-11-02 15:59:52', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3MDA3NTkyLjI1NywiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuNSIsImlhdCI6MTYwNDMyOTE5Mn0.WjUta6pJ0g-GSBqQFgUct9Be1P2HdvjnLPv64VkR3SU', '2020-12-03 14:59:52', 1),
+	(4, 5, '2020-11-10 01:54:06', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3NjQ4MDQ2Ljk2OSwiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuOCIsImlhdCI6MTYwNDk2OTY0Nn0.UC5ZEmJZxzi3Ztzn7Kk1ICIWLTey1ZetwRbKiE6MSDM', '2020-12-11 00:54:06', 1),
+	(5, 5, '2020-11-10 02:27:04', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3NjUwMDI0LjQyOSwiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuOCIsImlhdCI6MTYwNDk3MTYyNH0.dWBibCpVwveyaorK4FBtcDw6sTi4YFamXekWoQOAuj4', '2020-12-11 01:27:04', 1),
+	(6, 5, '2020-11-10 03:29:20', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3NjUzNzYwLjc0MywiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuOCIsImlhdCI6MTYwNDk3NTM2MH0.4wSQkKAt6a_r-O744faxk0NJtoKGhtqg3xbmx9_qvvA', '2020-12-11 02:29:20', 1),
+	(7, 5, '2020-11-10 04:03:10', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3NjU1NzkwLjk2OCwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTgzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDQ5NzczOTB9.Qc6ojO0PU75fALhQwHzHPRbYLvnPEE78po6npj3iUTM', '2020-12-11 03:03:10', 1),
+	(8, 5, '2020-11-11 21:51:40', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3ODA2MzAwLjQwOSwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTgzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUxMjc5MDB9.Uea7zSgGYoxeUGR_EEwPAuQikiWIZ2nXeJfoQjHJ4B0', '2020-12-12 20:51:40', 1),
+	(9, 5, '2020-11-11 22:10:59', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3ODA3NDU5LjQ4MSwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTgzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUxMjkwNTl9.dYue2NnMUWivdXIl5HpAylpeHIs3LETrlVk31eEk-60', '2020-12-12 21:10:59', 1),
+	(10, 5, '2020-11-12 00:03:07', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3ODE0MTg3LjI1NywiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTgzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUxMzU3ODd9.-itmtHyVbrv-6G4dc3l0V562cudsd3xnYGIfFaP33XQ', '2020-12-12 23:03:07', 1),
+	(11, 5, '2020-11-12 00:03:23', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3ODE0MjAzLjMyOCwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTgzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUxMzU4MDN9.Ckj43ystTPw7NShwS4gMh1wrCTbVe3BPna-dIW7WCTY', '2020-12-12 23:03:23', 1),
+	(12, 5, '2020-11-12 01:04:50', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3ODE3ODkwLjU3NCwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTgzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUxMzk0OTB9.0W3fc0Mk56E9zqIx7rmSsDjwx-6P0yAoOyzow94QGas', '2020-12-13 00:04:50', 1),
+	(13, 5, '2020-11-12 01:09:22', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3ODE4MTYyLjg1OCwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTgzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUxMzk3NjJ9.vtSTjJ-FSyc4bbXhzo01gcYXVX5NfnshO-DQreod0wg', '2020-12-13 00:09:22', 1),
+	(14, 5, '2020-11-13 19:44:30', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3OTcxNDcwLjkwNCwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUyOTMwNzB9.v-3aJCXMyzC_PMOh0SQywfIYc18igUQUqmBW8JRTtwQ', '2020-12-14 18:44:30', 1),
+	(15, 5, '2020-11-14 02:59:30', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA3OTk3NTcwLjU1OCwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUzMTkxNzB9.JIssYnGIAu35KXEPyLQ8ZG0e2JjDkqsEKbUXnCAWcPc', '2020-12-15 01:59:30', 1),
+	(16, 5, '2020-11-14 20:29:44', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MDYwNTg0LjQ2NCwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDUzODIxODR9.rRFmVadBUo5ZP-X5kS_TDkERx-iDtnbCsyiHuUahieY', '2020-12-15 19:29:44', 1),
+	(17, 5, '2020-11-15 02:15:29', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MDgxMzI5LjMyMywiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0MDI5Mjl9.g5Cgx35tSedphXJyrVR8PqC3q3o-NzYNYHl1OxIvsBM', '2020-12-16 01:15:29', 1),
+	(18, 5, '2020-11-15 02:25:15', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MDgxOTE1LjAwMywiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuOCIsImlhdCI6MTYwNTQwMzUxNX0.CsaVmleZNATMrtl8LAlF3qHxZ0ADHum586sVNMUfvhs', '2020-12-16 01:25:15', 1),
+	(19, 5, '2020-11-15 18:27:51', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTM5NjcxLjE5NCwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0NjEyNzF9.vWv9s3DC5M1zvqjcId1xvuxOxTU6VuYyJOjs5rzS1M8', '2020-12-16 17:27:51', 1),
+	(20, 5, '2020-11-15 18:45:27', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTQwNzI3LjQ1MiwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0NjIzMjd9.zrD0d8PeTwM3sAkc4L7cuVP5EfCKgz4HsmJLIuHiO-E', '2020-12-16 17:45:27', 1),
+	(21, 5, '2020-11-15 21:59:07', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTUyMzQ3LjA4MSwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0NzM5NDd9.kXt5pDKbszN-mbZa-ItbE306x1mbC-3GKnF00MmU0Xs', '2020-12-16 20:59:07', 1),
+	(22, 5, '2020-11-15 22:00:21', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTUyNDIxLjU4NywiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0NzQwMjF9.1zInFU_VcTWZs4zRVbbgpEKKFFJ8piTfQmT-qVZ-2LQ', '2020-12-16 21:00:21', 1),
+	(23, 5, '2020-11-15 23:44:19', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTU4NjU5LjQ4OCwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0ODAyNTl9.bsNFhHtatVhHqtQhoKIRhyh-0VqAk8JfQHDA4uACyY8', '2020-12-16 22:44:19', 1),
+	(24, 5, '2020-11-16 01:52:13', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTY2MzMzLjc2NywiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0ODc5MzN9.AEjS5kOsZPXAuz1bQCjlPpL6lgZf_RuxEOmuGm2V6-g', '2020-12-17 00:52:13', 1),
+	(25, 5, '2020-11-16 01:53:31', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTY2NDExLjkzMywiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0ODgwMTF9.IpCmSRHTXUahGvfTR9Qq2LavV9DRzUaLidRWgWqI_zU', '2020-12-17 00:53:31', 1),
+	(26, 5, '2020-11-16 01:56:11', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTY2NTcxLjk0NiwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0ODgxNzF9.GY67aVsGYOaIoQElMb88WY78NedeMPDlXNOCNsWyx8I', '2020-12-17 00:56:11', 1),
+	(27, 5, '2020-11-16 01:58:07', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTY2Njg3LjQ5MSwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0ODgyODd9.gwqFOQZNrLuHklWKECmm8Tpe_733Nor7OUXkJFUbLHY', '2020-12-17 00:58:07', 1),
+	(28, 5, '2020-11-16 02:00:15', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTY2ODE1Ljg0OCwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0ODg0MTV9.UhbFuR7izxLA-JVCp4jbetP7aGVPy_M6DEqtZRFfikE', '2020-12-17 01:00:15', 1),
+	(29, 5, '2020-11-16 02:01:24', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTY2ODg0LjI5LCJpcCI6Ijo6MSIsInVhIjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzg2LjAuNDI0MC4xOTMgU2FmYXJpLzUzNy4zNiIsImlhdCI6MTYwNTQ4ODQ4NH0.iMZZB85_K9_ZdZ0Ob24MhtFf8nlVQnt8Upb4mDio108', '2020-12-17 01:01:24', 1),
+	(30, 5, '2020-11-16 02:03:17', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTY2OTk3LjMyOSwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0ODg1OTd9.I8wpkc-eIzo-h0B8rbTu4kHCu-DA4fszHxwLiJTRwr0', '2020-12-17 01:03:17', 1),
+	(31, 5, '2020-11-16 02:09:03', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTY3MzQzLjcwMywiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0ODg5NDN9.WoPBKONqg5ejwMwFC7rbDDiV6DER0bVNbZKkeSjC0xg', '2020-12-17 01:09:03', 1),
+	(32, 5, '2020-11-16 02:10:37', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTY3NDM3LjEzNCwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0ODkwMzd9.p0fwuw0K4FIS5xi-4aBhbuTkm3TmQBeT8wGK5MPKSGs', '2020-12-17 01:10:37', 1),
+	(33, 5, '2020-11-16 02:12:42', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjo1LCJpZGVudGl0eSI6ImRldk5lbmFkU3Bhc2ljQG91dGxvb2suY29tIiwiZXhwIjoxNjA4MTY3NTYyLjA3NiwiaXAiOiI6OjEiLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS84Ni4wLjQyNDAuMTkzIFNhZmFyaS81MzcuMzYiLCJpYXQiOjE2MDU0ODkxNjJ9.DQVprnoaSKzI05yg-aNDSz6_D4L4VTi1D53W05MACvE', '2020-12-17 01:12:42', 1);
+/*!40000 ALTER TABLE `user_token` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
