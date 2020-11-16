@@ -5,12 +5,12 @@ import { RoleCheckerGuard } from "src/misc/role.checker.guard";
 import { Cart } from "src/entities/cart.entity";
 import { Request } from "express";
 import { AddArticleToCartDto } from "src/dtos/cart/add.article.to.cart.dto";
-import { EditArticleDto } from "src/dtos/article/edit.article.dto";
 import { EditArticleInCartDto } from "src/dtos/cart/edit.article.in.cart.dto";
 import { OrderService } from "src/services/order/order.service";
 import { Order } from "src/entities/order.entity";
 import { ApiResponse } from "src/misc/api.response.class";
 import { OrderMailer } from "src/services/order/order.mailer.service";
+import { Console } from "console";
 
 @Controller('api/user/cart')
 export class UserCartController {
@@ -69,4 +69,10 @@ export class UserCartController {
         return order;
     }
 
+    @Get('orders') //  GET http://localhost:3000/api/user/cart/orders/
+    @UseGuards(RoleCheckerGuard)
+    @AllowToRoles('user')
+    async getOrders(@Req() req: Request): Promise<Order[]> {
+        return await this.orderService.getAllByUserId(req.token.id)
+    }
 }

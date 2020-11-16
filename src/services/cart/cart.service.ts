@@ -36,7 +36,6 @@ export class CartService {
         if(cart.order !== null) {
             return null;
         }
-
         return cart;
     }
 

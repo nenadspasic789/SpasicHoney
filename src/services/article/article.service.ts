@@ -120,7 +120,7 @@ export class ArticleService extends TypeOrmCrudService<Article> {
 
     }
 
-    async search(data: ArticleSearchDto): Promise<Article[]> {
+    async search(data: ArticleSearchDto): Promise<Article[] | ApiResponse> {
         const builder = await this.article.createQueryBuilder("article");
 
         builder.leftJoinAndSelect(
@@ -129,7 +129,11 @@ export class ArticleService extends TypeOrmCrudService<Article> {
             // Promeniti ovaj nacin ugnjezdene pretrage.... za sada ide ovako
             "ap.createdAt = (SELECT ap.created_at FROM article_price AS ap WHERE ap.article_id = article.article_id ORDER BY ap.created_at DESC LIMIT 1 )"
             );
-        builder.leftJoin("article.articleFeatures", "af");
+        builder.leftJoinAndSelect("article.articleFeatures", "af");
+        builder.leftJoinAndSelect("article.features", "features");
+        builder.leftJoinAndSelect("article.photos", "photos");
+
+
         builder.where('article.categoryId = :catId', { catId: data.categoryId })
 
 
@@ -194,18 +198,14 @@ export class ArticleService extends TypeOrmCrudService<Article> {
         builder.skip(page * perPage);
         builder.take(perPage);
 
-        let articleIds = await (await builder.getMany()).map(article => article.articleId);
+        //let articleIds = await (await builder.getMany()).map(article => article.articleId);
 
-        return await this.article.find({
-           where: { articleId: In(articleIds) },
-           relations: [
-            "category",
-            "articleFeatures",
-            "features",
-            "articlePrices",
-            "photos"
-           ]
-        });
+        let articles = await builder.getMany();
+
+        if(articles.length === 0) {
+            return new ApiResponse("ok", 0, "No articles found for this search parametars!")
+        }
+        return articles;
     }
 
 }

@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Cart } from "./cart.entity";
+import { Order } from "./order.entity";
 import * as Validator from 'class-validator';
 
 @Index("uq_user_email", ["email"], { unique: true })
@@ -68,4 +69,7 @@ export class User {
 
   @OneToMany(() => Cart, (cart) => cart.user)
   carts: Cart[];
+
+  @OneToMany(() => Order, (order) => order.user)
+  orders: Order[];
 }

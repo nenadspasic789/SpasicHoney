@@ -29,7 +29,6 @@ export class OrderService {
                 "cartArticles",
             ]
         });
-
         if (!cart) {
             return new ApiResponse("error", -7002, "No such cart found!");
         }
@@ -40,7 +39,11 @@ export class OrderService {
 
         const newOrder: Order = new Order();
         newOrder.cartId = cartId;
+        newOrder.userId = cart.userId;
         const savedOrder = await this.order.save(newOrder);
+
+        cart.createdAt = new Date();
+        await this.cart.save(cart);
 
         return await this.order.findOne(savedOrder.orderId, {
             relations: [
@@ -66,6 +69,36 @@ export class OrderService {
             ],
         });
     }
+
+    async getAllByUserId(userId: number) {
+        return await this.order.find({
+            where: {
+                userId: userId,
+            },
+            relations: [
+                "cart",
+                "cart.user",
+                "cart.cartArticles",
+                "cart.cartArticles.article",
+                "cart.cartArticles.article.category",
+                "cart.cartArticles.article.articlePrices",
+            ],
+        });
+    }
+
+    async getAll() {
+        return await this.order.find({
+            relations: [
+                "cart",
+                "cart.user",
+                "cart.cartArticles",
+                "cart.cartArticles.article",
+                "cart.cartArticles.article.category",
+                "cart.cartArticles.article.articlePrices",
+            ],
+        });
+    }
+
 
     async changeStatus(orderId: number, newStatus: "rejected" | "accepted" | "shipped" | "pending") {
         const order = await this.getById(orderId);

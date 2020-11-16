@@ -33,7 +33,7 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# Nasi fajlovi
+# Moji fajlovi
 .env
 config/database.configuration.ts
 config/jwt.secret.ts

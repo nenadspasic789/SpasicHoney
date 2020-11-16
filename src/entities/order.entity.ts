@@ -3,10 +3,12 @@ import {
   Entity,
   Index,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Cart } from "./cart.entity";
+import { User } from "./user.entity";
 import * as Validator from 'class-validator';
 
 @Index("uq_order_cart_id", ["cartId"], { unique: true })
@@ -40,10 +42,25 @@ export class Order {
   @Validator.IsIn(["rejected", "accepted", "shipped", "pending"])
   status: "rejected" | "accepted" | "shipped" | "pending";
 
+  @Column({
+    type: "int",
+    name: "user_id",
+    unsigned: true
+  })
+  userId: number;
+
   @OneToOne(() => Cart, (cart) => cart.order, {
     onDelete: "NO ACTION",
     onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "cart_id", referencedColumnName: "cartId" }])
   cart: Cart;
+
+  @ManyToOne(() => User, (user) => user.orders, {
+    onDelete: "NO ACTION",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "user_id", referencedColumnName: "userId" }])
+  user: User;
+
 }

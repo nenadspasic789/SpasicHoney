@@ -3,7 +3,7 @@ export const StorageConfig = {
         destination: '../storage/photos/',
         maxAge: 1000 * 60 * 60 *24 * 7, // 7 dana
         urlPrefix: '/assets/photos',
-        maxSize: 3 * 1024 *1024,
+        maxSize: 20 * 1024 *1024,
         resize: {
             thumb: {
                 width: 120,
